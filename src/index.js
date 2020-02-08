@@ -7,7 +7,8 @@ ReactDOM.render(
     <App
       genre={`Drama`}
       titleFilm={`The Grand Budapest Hotel`}
-      releaseDate={`2014`}
+      releaseDate={2014}
+      filmsList={[`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`]}
     />,
     document.getElementById(`root`)
 );
