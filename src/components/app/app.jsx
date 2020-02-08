@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "./../main/main.jsx";
 
+const playButtonHandler = () => {};
+
 const App = (props) => {
 
   const {genre, titleFilm, releaseDate, filmsList} = props;
@@ -11,6 +13,7 @@ const App = (props) => {
     titleFilm={titleFilm}
     releaseDate={releaseDate}
     filmsList={filmsList}
+    onPlayButtonClick={playButtonHandler}
   />;
 };
 
