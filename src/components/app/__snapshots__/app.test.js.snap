@@ -264,6 +264,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Parasite"
@@ -277,7 +278,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
+              onClick={[Function]}
             >
               Parasite
             </a>
@@ -289,6 +291,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Avengers: Endgame"
@@ -302,7 +305,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
+              onClick={[Function]}
             >
               Avengers: Endgame
             </a>
@@ -314,6 +318,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="US"
@@ -327,7 +332,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
+              onClick={[Function]}
             >
               US
             </a>
@@ -339,6 +345,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Booksmart"
@@ -352,12 +359,14 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
+              onClick={[Function]}
             >
               Booksmart
             </a>
           </h3>
         </article>
+         
       </div>
       <div
         className="catalog__more"

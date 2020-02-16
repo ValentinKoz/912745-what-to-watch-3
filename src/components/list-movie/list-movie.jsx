@@ -18,13 +18,17 @@ class ListMovie extends PureComponent {
   }
 
   render() {
-    const {films} = this.props;
-    return (<div className="catalog__movies-list">{films.map((film, i) => <CardMovie handleEventHover={() => this.handleHover(film)} key={`${i}-${film.title}`} film={film} />)}</div>);
+    const {films, onCardClickHandle} = this.props;
+    return (<div className="catalog__movies-list">{
+      films.map((film, i) => <CardMovie handleEventHover={
+        () => this.handleHover(film)} key={`${i}-${film.title}`} film={film} onCardClickHandle={
+        () => (onCardClickHandle(film))} />)} </div>);
   }
 }
 
 ListMovie.propTypes = {
-  films: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired,
+  onCardClickHandle: PropTypes.func.isRequired,
 };
 
 export default ListMovie;

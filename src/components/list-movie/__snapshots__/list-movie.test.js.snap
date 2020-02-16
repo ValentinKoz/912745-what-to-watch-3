@@ -10,6 +10,7 @@ exports[`ListMovie is renderer correctly 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="Parasite"
@@ -23,7 +24,8 @@ exports[`ListMovie is renderer correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
+        onClick={[Function]}
       >
         Parasite
       </a>
@@ -35,6 +37,7 @@ exports[`ListMovie is renderer correctly 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="Avengers: Endgame"
@@ -48,7 +51,8 @@ exports[`ListMovie is renderer correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
+        onClick={[Function]}
       >
         Avengers: Endgame
       </a>
@@ -60,6 +64,7 @@ exports[`ListMovie is renderer correctly 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="US"
@@ -73,7 +78,8 @@ exports[`ListMovie is renderer correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
+        onClick={[Function]}
       >
         US
       </a>
@@ -85,6 +91,7 @@ exports[`ListMovie is renderer correctly 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="Booksmart"
@@ -98,11 +105,13 @@ exports[`ListMovie is renderer correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
+        onClick={[Function]}
       >
         Booksmart
       </a>
     </h3>
   </article>
+   
 </div>
 `;

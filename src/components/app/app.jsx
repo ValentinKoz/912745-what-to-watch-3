@@ -1,21 +1,63 @@
-import React from "react";
+import React, {PureComponent} from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "./../main/main.jsx";
+import PageMovie from "./../page-movie/page-movie.jsx";
 
 const playButtonHandler = () => {};
 
-const App = (props) => {
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  const {genre, titleFilm, releaseDate, films} = props;
+    this.state = {
+      currentFilm: null,
+    };
 
-  return <Main
-    genre={genre}
-    titleFilm={titleFilm}
-    releaseDate={releaseDate}
-    films={films}
-    onPlayButtonClick={playButtonHandler}
-  />;
-};
+    this.onCardClickHandle = this.onCardClickHandle.bind(this);
+  }
+
+  onCardClickHandle(film) {
+    this.setState(Object.assign({}, this.state, {currentFilm: film}));
+  }
+
+
+  _renderApp() {
+    const {genre, titleFilm, releaseDate, films} = this.props;
+    const {currentFilm} = this.state;
+
+    if (!currentFilm) {
+      return (<Main
+        genre={genre}
+        titleFilm={titleFilm}
+        releaseDate={releaseDate}
+        films={films}
+        onPlayButtonClick={playButtonHandler}
+        onCardClickHandle={this.onCardClickHandle}
+      />);
+    } if (currentFilm) {
+      return (<PageMovie film={currentFilm}/>);
+    }
+    return null;
+  }
+
+  render() {
+    const {films} = this.props;
+    const film = films[0];
+
+    return (<BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {this._renderApp()}
+        </Route>
+        <Route exact path="/dev-component">
+          <PageMovie film={film}/>
+        </Route>
+      </Switch>
+    </BrowserRouter>);
+  }
+
+}
 
 App.propTypes = {
   genre: PropTypes.string.isRequired,
