@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
+import films from "./mocks/films.js";
 
 
 ReactDOM.render(
@@ -8,7 +9,7 @@ ReactDOM.render(
       genre={`Drama`}
       titleFilm={`The Grand Budapest Hotel`}
       releaseDate={2014}
-      filmsList={[`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`]}
+      films={films}
     />,
     document.getElementById(`root`)
 );

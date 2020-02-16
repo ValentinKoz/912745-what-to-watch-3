@@ -6,13 +6,13 @@ const playButtonHandler = () => {};
 
 const App = (props) => {
 
-  const {genre, titleFilm, releaseDate, filmsList} = props;
+  const {genre, titleFilm, releaseDate, films} = props;
 
   return <Main
     genre={genre}
     titleFilm={titleFilm}
     releaseDate={releaseDate}
-    filmsList={filmsList}
+    films={films}
     onPlayButtonClick={playButtonHandler}
   />;
 };
@@ -21,7 +21,7 @@ App.propTypes = {
   genre: PropTypes.string.isRequired,
   titleFilm: PropTypes.string.isRequired,
   releaseDate: PropTypes.number.isRequired,
-  filmsList: PropTypes.array
+  films: PropTypes.array
 };
 
 export default App;
