@@ -7,11 +7,17 @@ const film = {
   title: `Booksmart`,
   releaseDate: 0,
   poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  bgPoster: ``,
+  ratingScore: ``,
+  ratingLevel: ``,
+  ratingCount: 1000,
+  text: ``,
+  starring: ``,
 };
 
 it(`CardMovie is renderer correctly`, () => {
   const tree = renderer.create(
-      <CardMovie film={film} handleEventHover={() => {}} />
+      <CardMovie film={film} handleEventHover={() => {}} onCardClickHandle={() => {}}/>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

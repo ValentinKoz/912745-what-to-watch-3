@@ -4,7 +4,7 @@ import ListMovie from "./../list-movie/list-movie.jsx";
 
 const Main = (props) => {
 
-  const {genre, titleFilm, releaseDate, films, onPlayButtonClick} = props;
+  const {genre, titleFilm, releaseDate, films, onPlayButtonClick, onCardClickHandle} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -98,7 +98,7 @@ const Main = (props) => {
             <a href="#" className="catalog__genres-link">Thrillers</a>
           </li>
         </ul>
-        <ListMovie films={films} />
+        <ListMovie films={films} onCardClickHandle={onCardClickHandle} />
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
         </div>
@@ -126,7 +126,8 @@ Main.propTypes = {
   titleFilm: PropTypes.string.isRequired,
   releaseDate: PropTypes.number.isRequired,
   films: PropTypes.array,
-  onPlayButtonClick: PropTypes.func.isRequired
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onCardClickHandle: PropTypes.func.isRequired,
 };
 
 export default Main;

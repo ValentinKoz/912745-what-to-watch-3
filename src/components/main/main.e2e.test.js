@@ -9,21 +9,45 @@ const films = [
     title: `Parasite`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    bgPoster: ``,
+    ratingScore: ``,
+    ratingLevel: ``,
+    ratingCount: 1000,
+    text: ``,
+    starring: ``,
   }, {
     genre: ``,
     title: `Avengers: Endgame`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    bgPoster: ``,
+    ratingScore: ``,
+    ratingLevel: ``,
+    ratingCount: 1000,
+    text: ``,
+    starring: ``,
   }, {
     genre: ``,
     title: `US`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    bgPoster: ``,
+    ratingScore: ``,
+    ratingLevel: ``,
+    ratingCount: 1000,
+    text: ``,
+    starring: ``,
   }, {
     genre: ``,
     title: `Booksmart`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    bgPoster: ``,
+    ratingScore: ``,
+    ratingLevel: ``,
+    ratingCount: 1000,
+    text: ``,
+    starring: ``,
   }
 ];
 
@@ -40,6 +64,7 @@ it(`Should button click`, () => {
     releaseDate={2017}
     films={films}
     onPlayButtonClick={playButtonHandler}
+    onCardClickHandle={() => {}}
   />
   );
 
