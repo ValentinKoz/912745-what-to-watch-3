@@ -18,7 +18,7 @@ class App extends PureComponent {
   }
 
   onCardClickHandle(film) {
-    this.setState(Object.assign({}, this.state, {currentFilm: film}));
+    this.setState({currentFilm: film});
   }
 
 

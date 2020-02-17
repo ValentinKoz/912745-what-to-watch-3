@@ -14,7 +14,7 @@ class ListMovie extends PureComponent {
   }
 
   handleHover(film) {
-    this.setState(Object.assign({}, this.state, {activeCard: film}));
+    this.setState({activeCard: film});
   }
 
   render() {
