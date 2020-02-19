@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Video 1`] = `
+<div
+  className="small-movie-card__image"
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <video
+    height="175"
+    muted={true}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+    poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+    width="280"
+  >
+    <source
+      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+    />
+  </video>
+</div>
+`;

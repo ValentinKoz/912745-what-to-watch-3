@@ -18,6 +18,7 @@ const mock = {
     ratingCount: 1000,
     text: ``,
     starring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }
 };
 
@@ -35,6 +36,7 @@ it(`Hover on card should pass to the callback`, () => {
     ratingCount: 1000,
     text: ``,
     starring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   };
 
   const screen = shallow(<CardMovie
@@ -66,6 +68,7 @@ it(`Click on img or a should pass to the callback`, () => {
     ratingCount: 1000,
     text: ``,
     starring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   };
 
   const screen = shallow(<CardMovie
@@ -74,11 +77,11 @@ it(`Click on img or a should pass to the callback`, () => {
     onCardClickHandle={onCardClickHandle}
   />);
 
-  const img = screen.find(`.small-movie-card__image`);
+  const article = screen.find(`article`);
   const a = screen.find(`a`);
 
   a.simulate(`click`, callbackObj);
-  img.simulate(`click`, callbackObj);
+  article.simulate(`click`, callbackObj);
 
   expect(onCardClickHandle).toHaveBeenCalledTimes(2);
 

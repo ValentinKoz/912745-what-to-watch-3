@@ -15,6 +15,7 @@ const films = [
     text: ``,
     director: ``,
     starring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }, {
     genre: ``,
     title: `Avengers: Endgame`,
@@ -27,6 +28,7 @@ const films = [
     text: ``,
     director: ``,
     starring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }, {
     genre: ``,
     title: `US`,
@@ -39,6 +41,7 @@ const films = [
     text: ``,
     director: ``,
     starring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }, {
     genre: ``,
     title: `Booksmart`,
@@ -51,6 +54,7 @@ const films = [
     text: ``,
     director: ``,
     starring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }
 ];
 
