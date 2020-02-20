@@ -21,7 +21,8 @@ it(`Render Video`, () => {
   const tree = renderer
     .create(<Video
       poster={film.bgPoster}
-      video={film.video}
+      videoSrc={film.video}
+      isPlaying={false}
     />, {
       createNodeMock: () => {
         return {};

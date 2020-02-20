@@ -60,8 +60,11 @@ const films = [
 
 it(`ListMovie is renderer correctly`, () => {
   const tree = renderer.create(
-      <ListMovie films={films} onCardClickHandle={() => {}}/>
-  ).toJSON();
+      <ListMovie films={films} onCardClickHandle={() => {}}/>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

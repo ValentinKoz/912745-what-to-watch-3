@@ -43,11 +43,12 @@ it(`Hover on card should pass to the callback`, () => {
     film={film}
     handleEventHover={handleEventHover}
     onCardClickHandle={() => {}}
+    handleEventHoverOut={() => {}}
   />);
 
   const cardArticle = screen.find(`article`);
 
-  cardArticle.simulate(`mouseover`, callbackObj);
+  cardArticle.simulate(`mouseenter`, callbackObj);
 
   expect(handleEventHover).toHaveBeenCalledTimes(1);
 
@@ -75,6 +76,7 @@ it(`Click on img or a should pass to the callback`, () => {
     film={film}
     handleEventHover={() => {}}
     onCardClickHandle={onCardClickHandle}
+    handleEventHoverOut={() => {}}
   />);
 
   const article = screen.find(`article`);

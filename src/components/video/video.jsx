@@ -6,66 +6,58 @@ export default class Video extends PureComponent {
     super(props);
 
     this.state = {
-      hover: false,
-      isPlaying: false,
+      isPlaying: this.props.isPlaying,
     };
 
     this._videoRef = createRef();
-    this.isComponentMounted = false;
-    this.playVideo = this.playVideo.bind(this);
-    this.stopVideo = this.stopVideo.bind(this);
-  }
 
-  playVideo() {
-    this.setState((prevState) => {
-      return {hover: !prevState.hover};
-    });
-
-    setTimeout(() => {
-      if (this.state.hover && this.isComponentMounted) {
-        const video = this._videoRef.current;
-        this.setState({isPlaying: true});
-        video.play();
-      }
-    }, 1000);
-  }
-
-  stopVideo() {
-    this.setState((prevState) => {
-      return {hover: !prevState.hover};
-    });
-
-    setTimeout(() => {
-      if (this.state.isPlaying && this.isComponentMounted) {
-        const video = this._videoRef.current;
-        video.pause();
-        video.src = this.props.video;
-        this.setState({isPlaying: false});
-      }
-    }, 1000);
   }
 
   componentDidMount() {
-    this.isComponentMounted = true;
+    const {video} = this.props;
+    const videoPlayer = this._videoRef.current;
+
+    videoPlayer.src = video;
+
+    videoPlayer.onplay = () => this.setState({
+      isPlaying: true,
+    });
+
+    videoPlayer.onpause = () => this.setState({
+      isPlaying: false,
+    });
   }
 
   componentWillUnmount() {
-    const video = this._videoRef.current;
-    this.isComponentMounted = false;
+    const videoPlayer = this._videoRef.current;
 
-    video.play = null;
-    video.pause = null;
-    video.src = ``;
+    videoPlayer.play = null;
+    videoPlayer.pause = null;
+    videoPlayer.src = ``;
+  }
+
+  componentDidUpdate() {
+    const {video} = this.props;
+    const videoPlayer = this._videoRef.current;
+
+    if (this.props.isPlaying) {
+      videoPlayer.play();
+    } else {
+      videoPlayer.pause();
+      videoPlayer.src = video;
+    }
   }
 
   render() {
     const {video, poster} = this.props;
     return (
-      <div className="small-movie-card__image" onMouseOver={this.playVideo} onMouseOut={this.stopVideo}><video ref={this._videoRef} onMouseOver={this.playVideo} onMouseOut={this.stopVideo} width="280" height="175" muted poster={poster}><source src={video}/></video></div>);
+      <video ref={this._videoRef} width="280" height="175" muted poster={poster} src={video}/>
+    );
   }
 }
 
 Video.propTypes = {
-  video: PropTypes.string.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  video: PropTypes.string,
   poster: PropTypes.string.isRequired,
 };

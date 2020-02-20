@@ -18,8 +18,11 @@ const film = {
 
 it(`CardMovie is renderer correctly`, () => {
   const tree = renderer.create(
-      <CardMovie film={film} handleEventHover={() => {}} onCardClickHandle={() => {}}/>
-  ).toJSON();
+      <CardMovie film={film} handleEventHover={() => {}} onCardClickHandle={() => {}} handleEventHoverOut={() => {}} />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

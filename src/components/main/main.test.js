@@ -67,7 +67,11 @@ it(`Should Main renderer correctly`, () => {
       films={films}
       onPlayButtonClick={() => {}}
       onCardClickHandle={() => {}}
-    />)
+    />, {
+      createNodeMock: () => {
+        return {};
+      }
+    })
       .toJSON();
 
   expect(tree).toMatchSnapshot();
