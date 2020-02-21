@@ -12,7 +12,6 @@ exports[`CardMovie is renderer correctly 1`] = `
   >
     <video
       height="175"
-      muted={true}
       poster=""
       src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
       width="280"
