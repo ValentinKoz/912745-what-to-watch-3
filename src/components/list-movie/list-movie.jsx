@@ -20,9 +20,9 @@ class ListMovie extends PureComponent {
   render() {
     const {films, onCardClickHandle} = this.props;
     return (<div className="catalog__movies-list">{
-      films.map((film, i) => <CardMovie handleEventHover={
-        () => this.handleHover(film)} key={`${i}-${film.title}`} film={film} onCardClickHandle={
-        () => (onCardClickHandle(film))} />)} </div>);
+      films.map((film, i) => <CardMovie activeCard={this.state.activeCard} handleEventHover={
+        () => this.handleHover(film)} handleEventHoverOut={() => this.handleHover(null)} key={`${i}-${film.title}`} film={film} onCardClickHandle={
+        () => onCardClickHandle(film)} />)} </div>);
   }
 }
 

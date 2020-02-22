@@ -11,6 +11,7 @@ export default [
     text: `Based on a true story about a small-time, self-possessed personal-injury attorney whose greed entangles him in a case that threatens to destroy him. The Woburn Case- which appears straightforward- instead evolves into a labyrinthine lawsuit of epic proportions where truth, if it can be found at all, resides not in the courtroom, but buried deep in a network of deceit and corruptions.`,
     director: `Steven Zaillian`,
     starring: `John Travolta, Robert Duvall, Stephen Fry and other`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   }, {
     genre: `adventure`,
     title: `Man of Steel`,
@@ -23,6 +24,7 @@ export default [
     text: `A young boy learns that he has extraordinary powers and is not of this Earth. As a young man, he journeys to discover where he came from and what he was sent here to do. But the hero in him must emerge if he is to save the world from annihilation and become the symbol of hope for all mankind.`,
     director: `Zack Snyder`,
     starring: `Henry Cavil, Amy Adams, Michael Shannon, Diane Lane and other`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }, {
     genre: `comdey`,
     title: `The King of Comedy`,
@@ -35,6 +37,7 @@ export default [
     text: `Martin Scorsese's satirical comedy/drama caustically explores the lengths to which a nobody will go to be as famous as his idol. Practicing his patter in his basement with cardboard cut-outs of his favorite celebrities, mediocre aspiring comedian Rupert Pupkin (Robert De Niro) believes that one appearance on the evening talk show of the Johnny Carson-esque Jerry Langford (Jerry Lewis) will be his ticket to stardom. After he helps Jerry escape the advances of amorous fan Masha (Sandra Bernhard), Rupert takes Jerry's patronizing brush-off as a true promise for an audition and begins haunting Jerry's office...`,
     director: `Martin Scorsese`,
     starring: `Robert De Niro, Jerry Lewis, Sandra Bernhard and other`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   }, {
     genre: `drama`,
     title: `The Godfather`,
@@ -47,5 +50,6 @@ export default [
     text: `Popularly viewed as one of the best American films ever made, the multi-generational crime saga The Godfather is a touchstone of cinema: one of the most widely imitated, quoted, and lampooned movies of all time. Marlon Brando and Al Pacino star as Vito Corleone and his youngest son, Michael, respectively. It is the late 1940s in New York and Corleone is, in the parlance of organized crime, a "godfather" or "don," the head of a Mafia family. Michael, a free thinker who defied his father by enlisting in the Marines to fight in World War II, has returned a captain and a war hero. Having long ago rejected the family business ...`,
     director: `Francis Ford Coppola`,
     starring: `Marlon Brando, Al Pacino, James Caan and other`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }
 ];
