@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import TabList from "./../tab-list/tab-list.jsx";
+import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
 
 const PageMovie = (props) => {
-  const {film} = props;
-  const {genre, title, releaseDate, poster, bgPoster, ratingScore, ratingLevel, ratingCount, text, director, starring} = film;
+  const {film, onCardClickHandle, films} = props;
+  const {genre, title, releaseDate, poster, bgPoster} = film;
 
-  return (<section className="movie-card movie-card--full">
+  return (<><section className="movie-card movie-card--full">
     <div className="movie-card__hero">
       <div className="movie-card__bg">
         <img src={bgPoster} alt={title} />
@@ -61,42 +63,12 @@ const PageMovie = (props) => {
         <div className="movie-card__poster movie-card__poster--big">
           <img src={poster} alt={title} width="218" height="327" />
         </div>
-
-        <div className="movie-card__desc">
-          <nav className="movie-nav movie-card__nav">
-            <ul className="movie-nav__list">
-              <li className="movie-nav__item movie-nav__item--active">
-                <a href="#" className="movie-nav__link">Overview</a>
-              </li>
-              <li className="movie-nav__item">
-                <a href="#" className="movie-nav__link">Details</a>
-              </li>
-              <li className="movie-nav__item">
-                <a href="#" className="movie-nav__link">Reviews</a>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="movie-rating">
-            <div className="movie-rating__score">{ratingScore}</div>
-            <p className="movie-rating__meta">
-              <span className="movie-rating__level">{ratingLevel}</span>
-              <span className="movie-rating__count">{`${ratingCount} ratings`}</span>
-            </p>
-          </div>
-
-          <div className="movie-card__text">
-
-            <p>{text}</p>
-
-            <p className="movie-card__director"><strong>{`Director: ${director}`}</strong></p>
-
-            <p className="movie-card__starring"><strong>{`Starring: ${starring}`}</strong></p>
-          </div>
-        </div>
+        <TabList film={film}/>
       </div>
     </div>
-  </section>);
+  </section>
+  <MoreLikeThis films={films} currentGenre={genre} currentFilm={film} onCardClickHandle={onCardClickHandle}/>
+  </>);
 };
 
 PageMovie.propTypes = {
@@ -112,7 +84,9 @@ PageMovie.propTypes = {
     text: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
+  onCardClickHandle: PropTypes.func.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default PageMovie;

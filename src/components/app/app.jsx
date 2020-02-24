@@ -36,7 +36,7 @@ class App extends PureComponent {
         onCardClickHandle={this.onCardClickHandle}
       />);
     } if (currentFilm) {
-      return (<PageMovie film={currentFilm}/>);
+      return (<PageMovie films={films} onCardClickHandle={this.onCardClickHandle} film={currentFilm}/>);
     }
     return null;
   }
@@ -51,7 +51,7 @@ class App extends PureComponent {
           {this._renderApp()}
         </Route>
         <Route exact path="/dev-component">
-          <PageMovie film={film}/>
+          <PageMovie films={films} onCardClickHandle={this.onCardClickHandle} film={film}/>
         </Route>
       </Switch>
     </BrowserRouter>);

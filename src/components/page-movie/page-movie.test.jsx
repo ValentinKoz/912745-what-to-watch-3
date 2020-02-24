@@ -2,6 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PageMovie from "./page-movie.jsx";
 
+const films = [{}, {}, {}];
+
 const film = {
   genre: `Genre`,
   title: `Title Name`,
@@ -19,7 +21,7 @@ const film = {
 
 it(`PageMovie is renderer correctly`, () => {
   const tree = renderer.create(
-      <PageMovie film={film} />
+      <PageMovie films={films} film={film} onCardClickHandle={() => {}} />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
