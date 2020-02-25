@@ -1,14 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import ListGenres from "./list-genres.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import App from "./app.jsx";
 
 const mockStore = configureStore([]);
 
 const films = [
   {
-    genre: ``,
+    genre: `Adventure`,
     title: `Parasite`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -21,7 +21,7 @@ const films = [
     starring: ``,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }, {
-    genre: ``,
+    genre: `Comdey`,
     title: `Avengers: Endgame`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -34,7 +34,7 @@ const films = [
     starring: ``,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }, {
-    genre: ``,
+    genre: `Action`,
     title: `US`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -47,7 +47,7 @@ const films = [
     starring: ``,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   }, {
-    genre: ``,
+    genre: `Action`,
     title: `Booksmart`,
     releaseDate: 0,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -62,7 +62,7 @@ const films = [
   }
 ];
 
-it(`Render App`, () => {
+it(`List Genres renderer correctly`, () => {
   const store = mockStore({
     genre: `All genres`,
     films,
@@ -70,18 +70,15 @@ it(`Render App`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            genre={`Horror`}
-            titleFilm={`it`}
-            releaseDate={2017}
-            films={films}
+          <ListGenres
+            onCardClickHandle={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
             return {};
           }
         })
-        .toJSON();
+    .toJSON();
 
   expect(tree).toMatchSnapshot();
 });

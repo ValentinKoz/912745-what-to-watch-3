@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListMovie from "./../list-movie/list-movie.jsx";
 import ListGenres from "./../list-genres/list-genres.jsx";
 
 const Main = (props) => {
 
-  const {genre, titleFilm, releaseDate, films, onPlayButtonClick, onCardClickHandle} = props;
+  const {genre, titleFilm, releaseDate, onPlayButtonClick, onCardClickHandle} = props;
 
   return (<React.Fragment>
     <section className="movie-card">

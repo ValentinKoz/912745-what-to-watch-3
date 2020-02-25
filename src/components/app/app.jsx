@@ -31,7 +31,6 @@ class App extends PureComponent {
         genre={genre}
         titleFilm={titleFilm}
         releaseDate={releaseDate}
-        films={films}
         onPlayButtonClick={playButtonHandler}
         onCardClickHandle={this.onCardClickHandle}
       />);

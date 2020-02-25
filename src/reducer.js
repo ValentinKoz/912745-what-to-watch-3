@@ -3,7 +3,7 @@ import films from "./mocks/films.js";
 
 const initialState = {
   genre: `All genres`,
-  films: films,
+  films,
 };
 
 const ActionCreator = {
@@ -11,14 +11,10 @@ const ActionCreator = {
     type: ActionType.CHANGE_GENRE,
     payload: genre,
   }),
-  setMovieList: () => ({
-    type: ActionType.SET_MOVIE_LIST,
-  }),
 };
 
 const ActionType = {
-  CHANGE_GENRE: "CHANGE_GENRE",
-  SET_MOVIE_LIST: "SET_MOVIE_LIST",
+  CHANGE_GENRE: `CHANGE_GENRE`,
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,11 +23,8 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         genre: action.payload
       });
-
-    case ActionType.SET_MOVIE_LIST:
+    default:
       return state;
-
-    return state;
   }
 };
 

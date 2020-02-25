@@ -1,6 +1,6 @@
 export default [
   {
-    genre: `action`,
+    genre: `Action`,
     title: `A Civil Action`,
     releaseDate: 1998,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -25,7 +25,7 @@ export default [
       rating: `8,0`
     }]
   }, {
-    genre: `action`,
+    genre: `Action`,
     title: `QWERTY`,
     releaseDate: 1998,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -50,7 +50,7 @@ export default [
       rating: `8,0`
     }]
   }, {
-    genre: `action`,
+    genre: `Action`,
     title: `A Action Action`,
     releaseDate: 2000,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -85,7 +85,7 @@ export default [
       rating: `9,2`
     }]
   }, {
-    genre: `adventure`,
+    genre: `Adventure`,
     title: `Man of Steel`,
     releaseDate: 2013,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -110,7 +110,7 @@ export default [
       rating: `7,0`
     }]
   }, {
-    genre: `adventure`,
+    genre: `Adventure`,
     title: `Advent`,
     releaseDate: 2001,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -135,7 +135,7 @@ export default [
       rating: `8,0`
     }]
   }, {
-    genre: `comdey`,
+    genre: `Comdey`,
     title: `The King of Comedy`,
     releaseDate: 1983,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -165,7 +165,7 @@ export default [
       rating: `7,0`
     }]
   }, {
-    genre: `comdey`,
+    genre: `Comdey`,
     title: `TBB`,
     releaseDate: 2017,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -195,7 +195,7 @@ export default [
       rating: `7,0`
     }]
   }, {
-    genre: `drama`,
+    genre: `Dramas`,
     title: `The Godfather`,
     releaseDate: 1972,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -220,7 +220,7 @@ export default [
       rating: `8,0`
     }]
   }, {
-    genre: `drama`,
+    genre: `Dramas`,
     title: `Drama Drama`,
     releaseDate: 2005,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
