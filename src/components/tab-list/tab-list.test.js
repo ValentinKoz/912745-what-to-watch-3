@@ -27,9 +27,9 @@ const film = {
 it(`Render list tabs correctly`, () => {
   const tree = renderer
     .create(
-      <TabList
-        film={film}
-      />
+        <TabList
+          film={film}
+        />
     ).toJSON();
 
   expect(tree).toMatchSnapshot();
