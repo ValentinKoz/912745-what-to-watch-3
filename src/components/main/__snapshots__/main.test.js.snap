@@ -329,9 +329,11 @@ Array [
       </div>
       <div
         className="catalog__more"
+        hidden={true}
       >
         <button
           className="catalog__button"
+          onClick={[Function]}
           type="button"
         >
           Show more

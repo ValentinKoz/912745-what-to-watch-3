@@ -1,3 +1,5 @@
 const genres = [`All genres`, `Adventure`, `Action`, `Comdey`, `Dramas`];
 
-export {genres};
+const displayedItems = 8;
+
+export {genres, displayedItems};

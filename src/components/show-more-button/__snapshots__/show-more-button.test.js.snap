@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render button correctly 1`] = `
+<div
+  className="catalog__more"
+  hidden={false}
+>
+  <button
+    className="catalog__button"
+    onClick={[Function]}
+    type="button"
+  >
+    Show more
+  </button>
+</div>
+`;
