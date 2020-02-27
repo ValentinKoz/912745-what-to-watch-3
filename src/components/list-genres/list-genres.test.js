@@ -6,6 +6,8 @@ import configureStore from "redux-mock-store";
 
 const mockStore = configureStore([]);
 
+const displayedItems = 8;
+
 const films = [
   {
     genre: `Adventure`,
@@ -66,6 +68,7 @@ it(`List Genres renderer correctly`, () => {
   const store = mockStore({
     genre: `All genres`,
     films,
+    displayedItems,
   });
   const tree = renderer
     .create(

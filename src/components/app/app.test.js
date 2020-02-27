@@ -62,10 +62,13 @@ const films = [
   }
 ];
 
+const displayedItems = 8;
+
 it(`Render App`, () => {
   const store = mockStore({
     genre: `All genres`,
     films,
+    displayedItems,
   });
   const tree = renderer
     .create(
