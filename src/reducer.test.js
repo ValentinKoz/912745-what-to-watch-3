@@ -1,12 +1,12 @@
 import {reducer, ActionCreator, ActionType} from "./reducer.js";
 import films from "./mocks/films.js";
-import {displayedItems} from "./mocks/settings.js";
+import {DISPLAYED_ITEMS} from "./mocks/settings.js";
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     genre: `All genres`,
     films,
-    displayedItems,
+    displayedItems: DISPLAYED_ITEMS,
   });
 });
 
@@ -14,14 +14,14 @@ it(`Reducere should change current genre`, () => {
   expect(reducer({
     genre: `All genres`,
     films,
-    displayedItems,
+    displayedItems: DISPLAYED_ITEMS,
   }, {
     type: ActionType.CHANGE_GENRE,
     payload: `Adventure`
   })).toEqual({
     genre: `Adventure`,
     films,
-    displayedItems,
+    displayedItems: DISPLAYED_ITEMS,
   });
 });
 

@@ -1,11 +1,11 @@
 import {extend} from "./utils.js";
 import films from "./mocks/films.js";
-import {displayedItems} from "./mocks/settings.js";
+import {DISPLAYED_ITEMS, ADD_TO_SHOW} from "./mocks/settings.js";
 
 const initialState = {
   genre: `All genres`,
   films,
-  displayedItems,
+  displayedItems: DISPLAYED_ITEMS,
 };
 
 const ActionCreator = {
@@ -37,11 +37,11 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.SHOW_MORE:
       return extend(state, {
-        displayedItems: 8 + state.displayedItems,
+        displayedItems: ADD_TO_SHOW + state.displayedItems,
       });
     case ActionType.RESET_LIST:
       return extend(state, {
-        displayedItems: 8
+        displayedItems: ADD_TO_SHOW
       });
     default:
       return state;
