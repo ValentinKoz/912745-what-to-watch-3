@@ -74,6 +74,8 @@ it(`Render App`, () => {
     .create(
         <Provider store={store}>
           <App
+            activeItem={null}
+            onSetActiveItem={() => {}}
             genre={`Horror`}
             titleFilm={`it`}
             releaseDate={2017}

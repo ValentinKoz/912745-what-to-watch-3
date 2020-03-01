@@ -5,11 +5,11 @@ import {genres} from "./../../mocks/settings.js";
 import {ActionCreator} from "../../reducer.js";
 import ListMovie from "./../list-movie/list-movie.jsx";
 import ShowMoreButton from "./../show-more-button/show-more-button.jsx";
+import {withActiveItem} from "../../hocs/with-active-item/with-active-item.js";
+
+const ListMovieWrapped = withActiveItem(ListMovie);
 
 class ListGenres extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
 
   _shouldHideButton() {
     const {films, displayedItems} = this.props;
@@ -26,7 +26,7 @@ class ListGenres extends PureComponent {
           <a href="#" className="catalog__genres-link" onClick={() => onChangeGenre(genreItem)}>{genreItem}</a>
         </li>)}
       </ul>
-      <ListMovie films={films.slice(0, displayedItems)} onCardClickHandle={onCardClickHandle} />
+      <ListMovieWrapped films={films.slice(0, displayedItems)} onCardClickHandle={onCardClickHandle} />
       <ShowMoreButton onClickShowMoreHandle={() => onClickToShowMore()} isHidden={this._shouldHideButton()}/>
     </section>);
   }

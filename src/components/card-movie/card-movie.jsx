@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Video from "../video/video.jsx";
 
-const CardMovie = (props) => {
+const CardMovie = React.memo((props) => {
 
   const {film, handleEventHover, handleEventHoverOut, onCardClickHandle, activeCard} = props;
   const {title, bgPoster, video} = film;
@@ -17,7 +17,9 @@ const CardMovie = (props) => {
       </h3>
     </article>
   );
-};
+});
+
+CardMovie.displayName = `CardMovie`;
 
 CardMovie.propTypes = {
   handleEventHoverOut: PropTypes.func.isRequired,

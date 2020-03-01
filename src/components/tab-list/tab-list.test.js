@@ -29,6 +29,8 @@ it(`Render list tabs correctly`, () => {
     .create(
         <TabList
           film={film}
+          onSetActiveTab={() => {}}
+          itemTab={`Overview`}
         />
     ).toJSON();
 

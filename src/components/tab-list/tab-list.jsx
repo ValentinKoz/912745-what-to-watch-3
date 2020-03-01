@@ -8,17 +8,13 @@ class TabList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      itemActive: `Overview`,
-    };
-
-    this.handleSetActiveItem = this.handleSetActiveItem.bind(this);
     this._renderTab = this._renderTab.bind(this);
   }
 
-  _renderTab(itemActive) {
+  _renderTab(itemTab) {
     const {film} = this.props;
-    switch (itemActive) {
+
+    switch (itemTab) {
       case `Overview`:
         return <TabOverview film = {film}/>;
       case `Details`:
@@ -30,32 +26,31 @@ class TabList extends PureComponent {
     }
   }
 
-  handleSetActiveItem(item) {
-    this.setState({itemActive: item});
-  }
-
   render() {
+    const {itemTab, onSetActiveTab} = this.props;
     return (<div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className={`movie-nav__item ${this.state.itemActive === `Overview` ? `movie-nav__item--active` : ``}`}>
-            <a href="#" onClick={() => this.handleSetActiveItem(`Overview`)} className="movie-nav__link" >Overview</a>
+          <li className={`movie-nav__item ${itemTab === `Overview` ? `movie-nav__item--active` : ``}`}>
+            <a href="#" onClick={() => onSetActiveTab(`Overview`)} className="movie-nav__link" >Overview</a>
           </li>
-          <li className={`movie-nav__item ${this.state.itemActive === `Details` ? `movie-nav__item--active` : ``}`}>
-            <a href="#" className="movie-nav__link" onClick={() => this.handleSetActiveItem(`Details`)}>Details</a>
+          <li className={`movie-nav__item ${itemTab === `Details` ? `movie-nav__item--active` : ``}`}>
+            <a href="#" className="movie-nav__link" onClick={() => onSetActiveTab(`Details`)}>Details</a>
           </li>
-          <li className={`movie-nav__item ${this.state.itemActive === `Reviews` ? `movie-nav__item--active` : ``}`}>
-            <a href="#" className="movie-nav__link" onClick={() => this.handleSetActiveItem(`Reviews`)}>Reviews</a>
+          <li className={`movie-nav__item ${itemTab === `Reviews` ? `movie-nav__item--active` : ``}`}>
+            <a href="#" className="movie-nav__link" onClick={() => onSetActiveTab(`Reviews`)}>Reviews</a>
           </li>
         </ul>
       </nav>
-      {this._renderTab(this.state.itemActive)}
+      {this._renderTab(itemTab)}
     </div>);
   }
 }
 
 TabList.propTypes = {
   film: PropTypes.object.isRequired,
+  itemTab: PropTypes.string.isRequired,
+  onSetActiveTab: PropTypes.func.isRequired,
 };
 
 export default TabList;

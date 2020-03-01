@@ -60,7 +60,7 @@ const films = [
 
 it(`ListMovie is renderer correctly`, () => {
   const tree = renderer.create(
-      <ListMovie films={films} onCardClickHandle={() => {}}/>, {
+      <ListMovie onSetActiveItem={() => {}} films={films} onCardClickHandle={() => {}}/>, {
         createNodeMock: () => {
           return {};
         }
