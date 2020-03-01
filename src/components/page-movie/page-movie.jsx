@@ -2,8 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import TabList from "./../tab-list/tab-list.jsx";
 import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
+import {withActiveTab} from "../../hocs/with-active-tab/with-active-tab.js";
 
-const PageMovie = (props) => {
+const TabListWrapped = withActiveTab(TabList);
+
+const PageMovie = React.memo((props) => {
   const {film, onCardClickHandle, films} = props;
   const {genre, title, releaseDate, poster, bgPoster} = film;
 
@@ -63,13 +66,15 @@ const PageMovie = (props) => {
         <div className="movie-card__poster movie-card__poster--big">
           <img src={poster} alt={title} width="218" height="327" />
         </div>
-        <TabList film={film}/>
+        <TabListWrapped film={film}/>
       </div>
     </div>
   </section>
   <MoreLikeThis films={films} currentGenre={genre} currentFilm={film} onCardClickHandle={onCardClickHandle}/>
   </>);
-};
+});
+
+PageMovie.displayName = `PageMovie`;
 
 PageMovie.propTypes = {
   film: PropTypes.shape({

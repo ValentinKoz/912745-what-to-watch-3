@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import ListGenres from "./../list-genres/list-genres.jsx";
 
-const Main = (props) => {
-
+const Main = React.memo((props) => {
   const {genre, titleFilm, releaseDate, onPlayButtonClick, onCardClickHandle} = props;
-
   return (<React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -80,7 +78,9 @@ const Main = (props) => {
       </footer>
     </div>
   </React.Fragment>);
-};
+});
+
+Main.displayName = `Main`;
 
 Main.propTypes = {
   genre: PropTypes.string.isRequired,

@@ -1,34 +1,22 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import CardMovie from "../card-movie/card-movie.jsx";
 
-class ListMovie extends PureComponent {
-  constructor(props) {
-    super(props);
+const ListMovie = React.memo((props) => {
+  const {films, onCardClickHandle, onSetActiveItem, activeItem} = props;
+  return (<div className="catalog__movies-list">{
+    films.map((film, i) => <CardMovie activeCard={activeItem} handleEventHover={
+      () => onSetActiveItem(film)} handleEventHoverOut={() => onSetActiveItem(null)} key={`${i}-${film.title}`} film={film} onCardClickHandle={
+      () => onCardClickHandle(film)} />)} </div>);
+});
 
-    this.state = {
-      activeCard: null
-    };
-
-    this.handleHover = this.handleHover.bind(this);
-  }
-
-  handleHover(film) {
-    this.setState({activeCard: film});
-  }
-
-  render() {
-    const {films, onCardClickHandle} = this.props;
-    return (<div className="catalog__movies-list">{
-      films.map((film, i) => <CardMovie activeCard={this.state.activeCard} handleEventHover={
-        () => this.handleHover(film)} handleEventHoverOut={() => this.handleHover(null)} key={`${i}-${film.title}`} film={film} onCardClickHandle={
-        () => onCardClickHandle(film)} />)} </div>);
-  }
-}
+ListMovie.displayName = `ListMovie`;
 
 ListMovie.propTypes = {
+  activeItem: PropTypes.object,
   films: PropTypes.array.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
+  onSetActiveItem: PropTypes.func.isRequired,
 };
 
 export default ListMovie;
