@@ -59,11 +59,13 @@ it(`Should button click`, () => {
   const playButtonHandler = jest.fn();
 
   const main = shallow(<Main
+    showPlayer={false}
+    onShowPlayer={playButtonHandler}
     genre={`Horror`}
     titleFilm={`it`}
     releaseDate={2017}
     films={films}
-    onPlayButtonClick={playButtonHandler}
+    onPlayButtonClick={() => {}}
     onCardClickHandle={() => {}}
   />
   );

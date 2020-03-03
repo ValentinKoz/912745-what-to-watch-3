@@ -21,7 +21,7 @@ const film = {
 
 it(`PageMovie is renderer correctly`, () => {
   const tree = renderer.create(
-      <PageMovie films={films} film={film} onCardClickHandle={() => {}} />
+      <PageMovie films={films} film={film} onCardClickHandle={() => {}} showPlayer={false} onShowPlayer={() => {}} />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

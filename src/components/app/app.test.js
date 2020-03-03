@@ -74,6 +74,8 @@ it(`Render App`, () => {
     .create(
         <Provider store={store}>
           <App
+            showPlayer={false}
+            onShowPlayer={() => {}}
             activeItem={null}
             onSetActiveItem={() => {}}
             genre={`Horror`}
