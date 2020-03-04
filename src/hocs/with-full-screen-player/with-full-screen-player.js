@@ -56,7 +56,15 @@ export const withFullScreenPlayer = (Component) => {
 
     getRemainingTime() {
       const dif = this.state.duration - this.state.currentTime;
-      return `${Math.floor(dif / 3600)}:${Math.floor(dif / 60)}:${dif % 60}`;
+      const hour = `${Math.floor(dif / 3600)}`;
+      const minutes = `${Math.floor(dif / 60)}`;
+      const sec = `${Math.floor(dif % 60)}`;
+
+      const hourStr = hour.length === 2 ? hour : `0${hour}`;
+      const minutesStr = minutes.length === 2 ? minutes : `0${minutes}`;
+      const secStr = sec.length === 2 ? sec : `0${sec}`;
+
+      return `${hourStr}:${minutesStr}:${secStr}`;
     }
 
     componentWillUnmount() {
