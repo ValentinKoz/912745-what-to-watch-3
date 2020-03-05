@@ -4,30 +4,28 @@ import PropTypes from "prop-types";
 import Main from "./../main/main.jsx";
 import PageMovie from "./../page-movie/page-movie.jsx";
 
-const playButtonHandler = () => {};
-
 class App extends PureComponent {
 
   _renderApp() {
-    const {genre, titleFilm, releaseDate, films, onSetActiveItem, activeItem} = this.props;
+    const {genre, titleFilm, releaseDate, films, onSetActiveItem, activeItem, showPlayer, onShowPlayer} = this.props;
 
     if (!activeItem) {
       return (<Main
         genre={genre}
         titleFilm={titleFilm}
         releaseDate={releaseDate}
-        onPlayButtonClick={playButtonHandler}
+        activeItem={activeItem}
         onCardClickHandle={onSetActiveItem}
+        showPlayer={showPlayer}
+        onShowPlayer={onShowPlayer}
       />);
     } if (activeItem) {
-      return (<PageMovie films={films} onCardClickHandle={onSetActiveItem} film={activeItem}/>);
+      return (<PageMovie films={films} onCardClickHandle={onSetActiveItem} film={activeItem} showPlayer={showPlayer} onShowPlayer={onShowPlayer}/>);
     }
     return null;
   }
 
   render() {
-    const {films, onSetActiveItem} = this.props;
-    const film = films[0];
 
     return (<BrowserRouter>
       <Switch>
@@ -35,7 +33,6 @@ class App extends PureComponent {
           {this._renderApp()}
         </Route>
         <Route exact path="/dev-component">
-          <PageMovie films={films} onCardClickHandle={onSetActiveItem} film={film}/>
         </Route>
       </Switch>
     </BrowserRouter>);
@@ -44,6 +41,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  showPlayer: PropTypes.bool.isRequired,
+  onShowPlayer: PropTypes.func.isRequired,
   genre: PropTypes.string.isRequired,
   titleFilm: PropTypes.string.isRequired,
   releaseDate: PropTypes.number.isRequired,

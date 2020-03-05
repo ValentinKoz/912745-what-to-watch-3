@@ -74,6 +74,8 @@ it(`Should Main renderer correctly`, () => {
     .create(
         <Provider store={store}>
           <Main
+            showPlayer={false}
+            onShowPlayer={() => {}}
             genre={`Horror`}
             titleFilm={`it`}
             releaseDate={2017}

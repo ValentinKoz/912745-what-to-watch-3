@@ -1,10 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListGenres from "./../list-genres/list-genres.jsx";
+import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
+import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
+import films from "./../../mocks/films.js";
+
+const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
 const Main = React.memo((props) => {
-  const {genre, titleFilm, releaseDate, onPlayButtonClick, onCardClickHandle} = props;
-  return (<React.Fragment>
+  const {genre, titleFilm, releaseDate, onCardClickHandle, showPlayer, onShowPlayer} = props;
+
+  return showPlayer ? (
+    <FullVideoPlayerWrapped
+      onExit={onShowPlayer}
+      movie={films[0]}
+    />
+  ) : (<React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
         <img src="img/bg-the-grand-budapest-hotel.jpg" alt={titleFilm} />
@@ -42,9 +53,9 @@ const Main = React.memo((props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button onClick={onPlayButtonClick} className="btn btn--play movie-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
+              <button onClick={onShowPlayer} className="btn btn--play movie-card__button" type="button">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
                 </svg>
                 <span>Play</span>
               </button>
@@ -87,7 +98,8 @@ Main.propTypes = {
   titleFilm: PropTypes.string.isRequired,
   releaseDate: PropTypes.number.isRequired,
   films: PropTypes.array,
-  onPlayButtonClick: PropTypes.func.isRequired,
+  showPlayer: PropTypes.bool.isRequired,
+  onShowPlayer: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
 };
 

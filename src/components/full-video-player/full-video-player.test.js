@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Video from "./video.jsx";
+import FullVideoPlayer from "./full-video-player.jsx";
 
-const film = {
+const movie = {
   genre: ``,
   title: `Parasite`,
   releaseDate: 0,
@@ -17,13 +17,19 @@ const film = {
   video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
 };
 
-it(`Render Video`, () => {
+it(`Render Full Video Player`, () => {
   const tree = renderer
-    .create(<Video
-      poster={film.bgPoster}
-      videoSrc={film.video}
+    .create(<FullVideoPlayer
+      onExit={()=>{}}
+      movie={movie}
       _videoRef={React.createRef()}
-      isPlaying={false}
+      isPlaying={true}
+      getRemainingTime={() => {}}
+      handleLoadMetaData={() => {}}
+      handleFullScreen={() => {}}
+      getProgress={() => {}}
+      handleTimeUpdate={() => {}}
+      handleVideoPlay={() => {}}
     />, {
       createNodeMock: () => {
         return {};

@@ -2,15 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import TabList from "./../tab-list/tab-list.jsx";
 import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
+import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withActiveTab} from "../../hocs/with-active-tab/with-active-tab.js";
+import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
 
 const TabListWrapped = withActiveTab(TabList);
 
+const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
+
 const PageMovie = React.memo((props) => {
-  const {film, onCardClickHandle, films} = props;
+  const {film, onCardClickHandle, films, showPlayer, onShowPlayer} = props;
   const {genre, title, releaseDate, poster, bgPoster} = film;
 
-  return (<><section className="movie-card movie-card--full">
+  return showPlayer ? (
+    <FullVideoPlayerWrapped
+      onExit={onShowPlayer}
+      movie={film}
+    />) : (<><section className="movie-card movie-card--full">
     <div className="movie-card__hero">
       <div className="movie-card__bg">
         <img src={bgPoster} alt={title} />
@@ -43,7 +51,7 @@ const PageMovie = React.memo((props) => {
           </p>
 
           <div className="movie-card__buttons">
-            <button className="btn btn--play movie-card__button" type="button">
+            <button onClick={onShowPlayer} className="btn btn--play movie-card__button" type="button">
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>
@@ -90,6 +98,8 @@ PageMovie.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.string.isRequired,
   }).isRequired,
+  showPlayer: PropTypes.bool.isRequired,
+  onShowPlayer: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
 };

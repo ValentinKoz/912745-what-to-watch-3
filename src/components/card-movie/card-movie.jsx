@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Video from "../video/video.jsx";
+import {withPlaying} from "../../hocs/with-playing/with-playing.js";
+
+const VideoWrapped = withPlaying(Video);
 
 const CardMovie = React.memo((props) => {
 
@@ -10,7 +13,7 @@ const CardMovie = React.memo((props) => {
   return (
     <article className="small-movie-card catalog__movies-card" onMouseEnter={handleEventHover} onMouseLeave={handleEventHoverOut} onClick={onCardClickHandle}>
       <div className="small-movie-card__image">
-        <Video isPlaying={activeCard === film} poster={bgPoster} video={video}/>
+        <VideoWrapped isPlaying={activeCard === film} poster={bgPoster} video={video}/>
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="#" onClick={onCardClickHandle}>{title}</a>
