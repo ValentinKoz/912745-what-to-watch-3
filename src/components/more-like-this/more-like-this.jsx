@@ -7,7 +7,7 @@ const ListMovieWrapped = withActiveItem(ListMovie);
 
 const MoreLikeThis = React.memo((props) => {
   const {currentGenre, currentFilm, onCardClickHandle, films} = props;
-  const filmsLikeThis = films.filter((film) => film.genre === currentGenre && film.title !== currentFilm.title);
+  const filmsLikeThis = films.filter((film) => film.genre === currentGenre && film.name !== currentFilm.name);
   if (filmsLikeThis.length > 4) {
     filmsLikeThis.splice(4);
   }

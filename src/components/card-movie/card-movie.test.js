@@ -3,17 +3,23 @@ import renderer from "react-test-renderer";
 import CardMovie from "./card-movie.jsx";
 
 const film = {
-  genre: ``,
-  title: `Booksmart`,
-  releaseDate: 0,
-  poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  bgPoster: ``,
-  ratingScore: ``,
-  ratingLevel: ``,
-  ratingCount: 1000,
-  text: ``,
-  starring: ``,
-  video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  id: `1`,
+  name: `Name`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+  preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+  backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+  backgroundColor: `#FDFDFC`,
+  video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  description: `text...`,
+  rating: 8.0,
+  scoresCount: 43241,
+  director: `Guy Ritchie`,
+  starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+  runTime: 104,
+  genre: `Comedy`,
+  released: 2000,
+  isFavorite: false
 };
 
 it(`CardMovie is renderer correctly`, () => {

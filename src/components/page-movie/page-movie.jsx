@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import TabList from "./../tab-list/tab-list.jsx";
 import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
@@ -12,16 +13,15 @@ const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
 const PageMovie = React.memo((props) => {
   const {film, onCardClickHandle, films, showPlayer, onShowPlayer} = props;
-  const {genre, title, releaseDate, poster, bgPoster} = film;
-
+  const {genre, released, poster, name, backgroundImg, backgroundColor} = film;
   return showPlayer ? (
     <FullVideoPlayerWrapped
       onExit={onShowPlayer}
       movie={film}
-    />) : (<><section className="movie-card movie-card--full">
+    />) : (<><section className="movie-card movie-card--full" style={{background: backgroundColor}}>
     <div className="movie-card__hero">
       <div className="movie-card__bg">
-        <img src={bgPoster} alt={title} />
+        <img src={backgroundImg} alt={name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -44,10 +44,10 @@ const PageMovie = React.memo((props) => {
 
       <div className="movie-card__wrap">
         <div className="movie-card__desc">
-          <h2 className="movie-card__title">{title}</h2>
+          <h2 className="movie-card__title">{name}</h2>
           <p className="movie-card__meta">
             <span className="movie-card__genre">{genre}</span>
-            <span className="movie-card__year">{releaseDate}</span>
+            <span className="movie-card__year">{released}</span>
           </p>
 
           <div className="movie-card__buttons">
@@ -72,7 +72,7 @@ const PageMovie = React.memo((props) => {
     <div className="movie-card__wrap movie-card__translate-top">
       <div className="movie-card__info">
         <div className="movie-card__poster movie-card__poster--big">
-          <img src={poster} alt={title} width="218" height="327" />
+          <img src={poster} alt={name} width="218" height="327" />
         </div>
         <TabListWrapped film={film}/>
       </div>
@@ -81,27 +81,20 @@ const PageMovie = React.memo((props) => {
   <MoreLikeThis films={films} currentGenre={genre} currentFilm={film} onCardClickHandle={onCardClickHandle}/>
   </>);
 });
+const mapStateToProps = (state) => ({
+  films: state[`DATA`].films,
+});
+
 
 PageMovie.displayName = `PageMovie`;
 
 PageMovie.propTypes = {
-  film: PropTypes.shape({
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    bgPoster: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-  }).isRequired,
+  film: PropTypes.object.isRequired,
   showPlayer: PropTypes.bool.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
 };
 
-export default PageMovie;
+export {PageMovie};
+export default connect(mapStateToProps)(PageMovie);

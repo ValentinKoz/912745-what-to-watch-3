@@ -15,8 +15,8 @@ exports[`ListMovie is renderer correctly 1`] = `
     >
       <video
         height="175"
-        poster=""
-        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+        src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
         width="280"
       />
     </div>
@@ -28,7 +28,7 @@ exports[`ListMovie is renderer correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Parasite
+        Name1
       </a>
     </h3>
   </article>
@@ -43,8 +43,8 @@ exports[`ListMovie is renderer correctly 1`] = `
     >
       <video
         height="175"
-        poster=""
-        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+        src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
         width="280"
       />
     </div>
@@ -56,7 +56,7 @@ exports[`ListMovie is renderer correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Avengers: Endgame
+        Name2
       </a>
     </h3>
   </article>
@@ -71,8 +71,8 @@ exports[`ListMovie is renderer correctly 1`] = `
     >
       <video
         height="175"
-        poster=""
-        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+        src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
         width="280"
       />
     </div>
@@ -84,35 +84,7 @@ exports[`ListMovie is renderer correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        US
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        height="175"
-        poster=""
-        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="#"
-        onClick={[Function]}
-      >
-        Booksmart
+        Name3
       </a>
     </h3>
   </article>

@@ -7,20 +7,17 @@ import PageMovie from "./../page-movie/page-movie.jsx";
 class App extends PureComponent {
 
   _renderApp() {
-    const {genre, titleFilm, releaseDate, films, onSetActiveItem, activeItem, showPlayer, onShowPlayer} = this.props;
+    const {onSetActiveItem, activeItem, showPlayer, onShowPlayer} = this.props;
 
     if (!activeItem) {
       return (<Main
-        genre={genre}
-        titleFilm={titleFilm}
-        releaseDate={releaseDate}
         activeItem={activeItem}
         onCardClickHandle={onSetActiveItem}
         showPlayer={showPlayer}
         onShowPlayer={onShowPlayer}
       />);
     } if (activeItem) {
-      return (<PageMovie films={films} onCardClickHandle={onSetActiveItem} film={activeItem} showPlayer={showPlayer} onShowPlayer={onShowPlayer}/>);
+      return (<PageMovie onCardClickHandle={onSetActiveItem} film={activeItem} showPlayer={showPlayer} onShowPlayer={onShowPlayer}/>);
     }
     return null;
   }
@@ -41,14 +38,10 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  showPlayer: PropTypes.bool.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
-  genre: PropTypes.string.isRequired,
-  titleFilm: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
+  showPlayer: PropTypes.bool.isRequired,
   onSetActiveItem: PropTypes.func.isRequired,
   activeItem: PropTypes.object,
-  films: PropTypes.array
 };
 
 export default App;

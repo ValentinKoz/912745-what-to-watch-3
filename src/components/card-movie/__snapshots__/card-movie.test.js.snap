@@ -12,8 +12,8 @@ exports[`CardMovie is renderer correctly 1`] = `
   >
     <video
       height="175"
-      poster=""
-      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+      poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+      src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
       width="280"
     />
   </div>
@@ -25,7 +25,7 @@ exports[`CardMovie is renderer correctly 1`] = `
       href="#"
       onClick={[Function]}
     >
-      Booksmart
+      Name
     </a>
   </h3>
 </article>

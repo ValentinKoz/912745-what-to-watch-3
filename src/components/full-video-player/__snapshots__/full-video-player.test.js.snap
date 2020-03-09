@@ -9,10 +9,10 @@ exports[`Render Full Video Player 1`] = `
     className="player__video"
     onLoadedMetadata={[Function]}
     onTimeUpdate={[Function]}
-    poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+    poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
   >
     <source
-      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+      src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
     />
   </video>
   <button

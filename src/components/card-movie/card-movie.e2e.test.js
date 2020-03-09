@@ -8,17 +8,23 @@ configure({adapter: new Adapter()});
 
 const mock = {
   film: {
-    genre: ``,
-    title: `Parasite`,
-    releaseDate: 0,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    bgPoster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: 1000,
-    text: ``,
-    starring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    id: `1`,
+    name: `Name`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+    preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+    backgroundColor: `#FDFDFC`,
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    description: `text...`,
+    rating: 8.0,
+    scoresCount: 43241,
+    director: `Guy Ritchie`,
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    runTime: 104,
+    genre: `Comedy`,
+    released: 2000,
+    isFavorite: false
   }
 };
 
@@ -26,17 +32,23 @@ it(`Hover on card should pass to the callback`, () => {
   const {film} = mock;
   const handleEventHover = jest.fn();
   const callbackObj = {
-    genre: ``,
-    title: `Parasite`,
-    releaseDate: 0,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    bgPoster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: 1000,
-    text: ``,
-    starring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    id: `1`,
+    name: `Name`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+    preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+    backgroundColor: `#FDFDFC`,
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    description: `text...`,
+    rating: 8.0,
+    scoresCount: 43241,
+    director: `Guy Ritchie`,
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    runTime: 104,
+    genre: `Comedy`,
+    released: 2000,
+    isFavorite: false
   };
 
   const screen = shallow(<CardMovie
@@ -59,17 +71,23 @@ it(`Click on img or a should pass to the callback`, () => {
   const {film} = mock;
   const onCardClickHandle = jest.fn();
   const callbackObj = {
-    genre: ``,
-    title: `Parasite`,
-    releaseDate: 0,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    bgPoster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: 1000,
-    text: ``,
-    starring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    id: `1`,
+    name: `Name`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+    preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+    backgroundColor: `#FDFDFC`,
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    description: `text...`,
+    rating: 8.0,
+    scoresCount: 43241,
+    director: `Guy Ritchie`,
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    runTime: 104,
+    genre: `Comedy`,
+    released: 2000,
+    isFavorite: false
   };
 
   const screen = shallow(<CardMovie

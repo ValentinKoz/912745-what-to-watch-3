@@ -1,24 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import ListGenres from "./../list-genres/list-genres.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
-import films from "./../../mocks/films.js";
 
 const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
 const Main = React.memo((props) => {
-  const {genre, titleFilm, releaseDate, onCardClickHandle, showPlayer, onShowPlayer} = props;
+  const {onCardClickHandle, showPlayer, onShowPlayer, promo} = props;
+  const {backgroundImg, name, poster, genre, released} = promo;
 
   return showPlayer ? (
     <FullVideoPlayerWrapped
       onExit={onShowPlayer}
-      movie={films[0]}
+      movie={promo}
     />
-  ) : (<React.Fragment>
+  ) : promo && (<React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt={titleFilm} />
+        <img src={backgroundImg} alt={name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -42,14 +43,14 @@ const Main = React.memo((props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={poster} alt={name} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{titleFilm}</h2>
+            <h2 className="movie-card__title">{name}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{releaseDate}</span>
+              <span className="movie-card__year">{released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -91,16 +92,18 @@ const Main = React.memo((props) => {
   </React.Fragment>);
 });
 
+const mapStateToProps = (state) => ({
+  promo: state[`DATA`].promo,
+});
+
 Main.displayName = `Main`;
 
 Main.propTypes = {
-  genre: PropTypes.string.isRequired,
-  titleFilm: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
-  films: PropTypes.array,
+  promo: PropTypes.object.isRequired,
   showPlayer: PropTypes.bool.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
 };
 
-export default Main;
+export {Main};
+export default connect(mapStateToProps)(Main);

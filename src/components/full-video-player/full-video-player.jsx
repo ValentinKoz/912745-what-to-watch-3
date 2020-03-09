@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 
 const FullVideoPlayer = (props) => {
   const {onExit, movie, isPlaying, _videoRef, getRemainingTime, handleLoadMetaData, handleFullScreen, getProgress, handleTimeUpdate, handleVideoPlay} = props;
-
   return (<div className="player">
-    <video ref={_videoRef} autoPlay={`autoplay`} onLoadedMetadata={handleLoadMetaData} className="player__video" poster={movie.poster} onTimeUpdate={handleTimeUpdate}>
+    <video ref={_videoRef} autoPlay={`autoplay`} onLoadedMetadata={handleLoadMetaData} className="player__video" poster={movie.preview} onTimeUpdate={handleTimeUpdate}>
       <source src={movie.video}/>
     </video>
 
