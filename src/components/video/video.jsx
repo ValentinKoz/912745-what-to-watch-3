@@ -9,7 +9,6 @@ const Video = (props) => {
 };
 
 Video.propTypes = {
-  isPlaying: PropTypes.bool.isRequired,
   video: PropTypes.string,
   poster: PropTypes.string.isRequired,
   _videoRef: PropTypes.oneOfType([

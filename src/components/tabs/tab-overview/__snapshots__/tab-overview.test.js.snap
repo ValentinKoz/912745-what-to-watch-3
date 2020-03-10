@@ -8,7 +8,7 @@ Array [
     <div
       className="movie-rating__score"
     >
-      0,0
+      8
     </div>
     <p
       className="movie-rating__meta"
@@ -16,12 +16,12 @@ Array [
       <span
         className="movie-rating__level"
       >
-        OK
+        Vary good
       </span>
       <span
         className="movie-rating__count"
       >
-        0 ratings
+        43241 ratings
       </span>
     </p>
   </div>,
@@ -35,14 +35,14 @@ Array [
       className="movie-card__director"
     >
       <strong>
-        Director: Steven Zaillian
+        Director: Guy Ritchie
       </strong>
     </p>
     <p
       className="movie-card__starring"
     >
       <strong>
-        Starring: John Travolta, Robert Duvall, Stephen Fry
+        Starring: Jason Statham, Brad Pitt, Benicio Del Toro
       </strong>
     </p>
   </div>,

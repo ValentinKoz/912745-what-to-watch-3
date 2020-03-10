@@ -3,18 +3,23 @@ import renderer from "react-test-renderer";
 import TabOverview from "./tab-overview.jsx";
 
 const film = {
-  genre: `action`,
-  releaseDate: 1998,
-  poster: ``,
-  bgPoster: ``,
-  ratingScore: `0,0`,
-  ratingLevel: `OK`,
-  ratingCount: 0,
-  text: `text...`,
-  director: `Steven Zaillian`,
-  runTime: `1h 39m`,
-  starring: `John Travolta, Robert Duvall, Stephen Fry`,
-  reviews: []
+  id: `1`,
+  name: `Name`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+  preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+  backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+  backgroundColor: `#FDFDFC`,
+  video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  description: `text...`,
+  rating: 8.0,
+  scoresCount: 43241,
+  director: `Guy Ritchie`,
+  starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+  runTime: 104,
+  genre: `Comedy`,
+  released: 2000,
+  isFavorite: false
 };
 
 it(`Should TabOverview renderer correctly`, () => {

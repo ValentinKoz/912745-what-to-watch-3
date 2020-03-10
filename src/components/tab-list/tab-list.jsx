@@ -1,8 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import TabOverview from "../tabs/tab-overview/tab-overview.jsx";
 import TabReviews from "../tabs/tab-reviews/tab-reviews.jsx";
 import TabDetails from "../tabs/tab-details/tab-details.jsx";
+import {Namespace} from "./../../mocks/settings.js";
 
 class TabList extends PureComponent {
   constructor(props) {
@@ -12,7 +14,7 @@ class TabList extends PureComponent {
   }
 
   _renderTab(itemTab) {
-    const {film} = this.props;
+    const {film, comments} = this.props;
 
     switch (itemTab) {
       case `Overview`:
@@ -20,7 +22,7 @@ class TabList extends PureComponent {
       case `Details`:
         return <TabDetails film = {film}/>;
       case `Reviews`:
-        return <TabReviews film = {film}/>;
+        return <TabReviews comments = {comments}/>;
       default:
         return <p>Что-то пошло не так</p>;
     }
@@ -28,11 +30,12 @@ class TabList extends PureComponent {
 
   render() {
     const {itemTab, onSetActiveTab} = this.props;
+
     return (<div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
           <li className={`movie-nav__item ${itemTab === `Overview` ? `movie-nav__item--active` : ``}`}>
-            <a href="#" onClick={() => onSetActiveTab(`Overview`)} className="movie-nav__link" >Overview</a>
+            <a href="#" className="movie-nav__link" onClick={() => onSetActiveTab(`Overview`)}>Overview</a>
           </li>
           <li className={`movie-nav__item ${itemTab === `Details` ? `movie-nav__item--active` : ``}`}>
             <a href="#" className="movie-nav__link" onClick={() => onSetActiveTab(`Details`)}>Details</a>
@@ -46,11 +49,16 @@ class TabList extends PureComponent {
     </div>);
   }
 }
+const mapStateToProps = (state) => ({
+  comments: state[Namespace.DATA].commentsToFilm,
+});
 
 TabList.propTypes = {
   film: PropTypes.object.isRequired,
   itemTab: PropTypes.string.isRequired,
   onSetActiveTab: PropTypes.func.isRequired,
+  comments: PropTypes.array,
 };
 
-export default TabList;
+export {TabList};
+export default connect(mapStateToProps)(TabList);

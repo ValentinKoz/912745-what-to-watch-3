@@ -1,10 +1,8 @@
-import {extend} from "./utils.js";
-import films from "./mocks/films.js";
-import {DISPLAYED_ITEMS, ADD_TO_SHOW} from "./mocks/settings.js";
+import {extend} from "./../../utils.js";
+import {DISPLAYED_ITEMS, ADD_TO_SHOW} from "./../../mocks/settings.js";
 
 const initialState = {
   genre: `All genres`,
-  films,
   displayedItems: DISPLAYED_ITEMS,
 };
 

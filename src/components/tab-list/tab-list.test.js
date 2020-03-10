@@ -1,37 +1,52 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import TabList from "./tab-list.jsx";
+import {Namespace} from "./../../mocks/settings.js";
 
-const film = {
-  genre: `Жанр`,
-  title: `Title`,
-  releaseDate: 0,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
-  bgPoster: `img/moonrise-kingdom.jpg`,
-  ratingScore: `8,9`,
-  ratingLevel: `level`,
-  ratingCount: 240,
-  text: `текст...`,
-  director: `Director`,
-  runTime: `0h 00m`,
-  starring: `starring`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  reviews: [{
-    text: `reviews`,
-    author: `Kate Muir`,
-    time: `December 24, 2016`,
-    rating: `8,9`
-  }]
-};
+const mockStore = configureStore([]);
 
+const films = [{
+  id: `1`,
+  name: `Name`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+  preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+  backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+  backgroundColor: `#FDFDFC`,
+  video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  description: `text...`,
+  rating: 8.0,
+  scoresCount: 43241,
+  director: `Guy Ritchie`,
+  starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+  runTime: 104,
+  genre: `Comedy`,
+  released: 2000,
+  isFavorite: false
+}];
+const displayedItems = 8;
 it(`Render list tabs correctly`, () => {
+  const store = mockStore({
+    [Namespace.DATA]: {
+      films,
+      promo: films[0],
+    },
+    [Namespace.STATE]: {
+      genre: `All genres`,
+      displayedItems,
+    }
+  });
   const tree = renderer
     .create(
-        <TabList
-          film={film}
-          onSetActiveTab={() => {}}
-          itemTab={`Overview`}
-        />
+        <Provider store={store}>
+          <TabList
+            film={films[0]}
+            onSetActiveTab={() => {}}
+            itemTab={`Overview`}
+          />
+        </Provider>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -11,9 +11,21 @@ const getList = (stars) => {
   return starList;
 };
 
+const getRemainingTime = (runTime) => {
+  const hour = `${Math.floor(runTime / 3600)}`;
+  const minutes = `${Math.floor(runTime / 60)}`;
+  const sec = `${Math.floor(runTime % 60)}`;
+
+  const hourStr = hour.length === 2 ? hour : `0${hour}`;
+  const minutesStr = minutes.length === 2 ? minutes : `0${minutes}`;
+  const secStr = sec.length === 2 ? sec : `0${sec}`;
+
+  return `${hourStr}:${minutesStr}:${secStr}`;
+};
+
 const TabDetalis = (props) => {
   const {film} = props;
-  const {director, starring, runTime, genre, releaseDate} = film;
+  const {director, starring, runTime, genre, released} = film;
   return (<div className="movie-card__text movie-card__row">
     <div className="movie-card__text-col">
       <p className="movie-card__details-item">
@@ -23,7 +35,7 @@ const TabDetalis = (props) => {
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Starring</strong>
         <span className="movie-card__details-value">
-          {getList(starring.split(`,`))}
+          {getList(starring)}
         </span>
       </p>
     </div>
@@ -31,7 +43,7 @@ const TabDetalis = (props) => {
     <div className="movie-card__text-col">
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Run Time</strong>
-        <span className="movie-card__details-value">{runTime}</span>
+        <span className="movie-card__details-value">{getRemainingTime(runTime)}</span>
       </p>
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Genre</strong>
@@ -39,7 +51,7 @@ const TabDetalis = (props) => {
       </p>
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Released</strong>
-        <span className="movie-card__details-value">{releaseDate}</span>
+        <span className="movie-card__details-value">{released}</span>
       </p>
     </div>
   </div>);
@@ -48,10 +60,10 @@ const TabDetalis = (props) => {
 TabDetalis.propTypes = {
   film: PropTypes.shape({
     director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-    runTime: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
+    runTime: PropTypes.number.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
+    released: PropTypes.number.isRequired,
   }).isRequired,
 };
 

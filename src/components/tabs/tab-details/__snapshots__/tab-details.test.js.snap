@@ -18,7 +18,7 @@ exports[`Should TabDetails renderer correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        Steven Zaillian
+        Guy Ritchie
       </span>
     </p>
     <p
@@ -32,11 +32,11 @@ exports[`Should TabDetails renderer correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        John Travolta,
+        Jason Statham,
         <br />
-         Robert Duvall,
+        Brad Pitt,
         <br />
-         Stephen Fry,
+        Benicio Del Toro,
       </span>
     </p>
   </div>
@@ -54,7 +54,7 @@ exports[`Should TabDetails renderer correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        1h 39m
+        00:01:44
       </span>
     </p>
     <p
@@ -68,7 +68,7 @@ exports[`Should TabDetails renderer correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        action
+        Comedy
       </span>
     </p>
     <p
@@ -82,7 +82,7 @@ exports[`Should TabDetails renderer correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        1998
+        2000
       </span>
     </p>
   </div>

@@ -1,70 +1,92 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import ListMovie from "./list-movie.jsx";
+import {Namespace} from "./../../mocks/settings.js";
+
+const mockStore = configureStore([]);
 
 const films = [
   {
-    genre: ``,
-    title: `Parasite`,
-    releaseDate: 0,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    bgPoster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: 1000,
-    text: ``,
-    director: ``,
-    starring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    id: `1`,
+    name: `Name1`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+    preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+    backgroundColor: `#FDFDFC`,
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    description: `text...`,
+    rating: 8.0,
+    scoresCount: 43241,
+    director: `Guy Ritchie`,
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    runTime: 104,
+    genre: `Comedy`,
+    released: 2000,
+    isFavorite: false
   }, {
-    genre: ``,
-    title: `Avengers: Endgame`,
-    releaseDate: 0,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    bgPoster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: 1000,
-    text: ``,
-    director: ``,
-    starring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    id: `2`,
+    name: `Name2`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+    preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+    backgroundColor: `#FDFDFC`,
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    description: `text...`,
+    rating: 8.0,
+    scoresCount: 43241,
+    director: `Guy Ritchie`,
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    runTime: 104,
+    genre: `Comedy`,
+    released: 2000,
+    isFavorite: false
   }, {
-    genre: ``,
-    title: `US`,
-    releaseDate: 0,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    bgPoster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: 1000,
-    text: ``,
-    director: ``,
-    starring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  }, {
-    genre: ``,
-    title: `Booksmart`,
-    releaseDate: 0,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    bgPoster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: 1000,
-    text: ``,
-    director: ``,
-    starring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    id: `3`,
+    name: `Name3`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+    preview: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+    backgroundColor: `#FDFDFC`,
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    previewVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    description: `text...`,
+    rating: 8.0,
+    scoresCount: 43241,
+    director: `Guy Ritchie`,
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    runTime: 104,
+    genre: `Comedy`,
+    released: 2000,
+    isFavorite: false
   }
 ];
 
+const displayedItems = 8;
+
 it(`ListMovie is renderer correctly`, () => {
-  const tree = renderer.create(
-      <ListMovie onSetActiveItem={() => {}} films={films} onCardClickHandle={() => {}}/>, {
-        createNodeMock: () => {
-          return {};
-        }
-      }).toJSON();
+  const store = mockStore({
+    [Namespace.DATA]: {
+      films,
+      promo: films[0],
+    },
+    [Namespace.STATE]: {
+      genre: `All genres`,
+      displayedItems,
+    }
+  });
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <ListMovie onSetActiveItem={() => {}} films={films} onCardClickHandle={() => {}}/>
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

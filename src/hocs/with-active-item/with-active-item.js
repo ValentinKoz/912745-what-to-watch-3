@@ -30,7 +30,6 @@ export const withActiveItem = (Component) => {
     }
   }
   WithActiveItem.propTypes = {
-    films: PropTypes.array.isRequired,
     onCardClickHandle: PropTypes.func,
   };
 

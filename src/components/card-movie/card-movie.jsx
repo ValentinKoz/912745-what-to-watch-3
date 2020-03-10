@@ -8,15 +8,15 @@ const VideoWrapped = withPlaying(Video);
 const CardMovie = React.memo((props) => {
 
   const {film, handleEventHover, handleEventHoverOut, onCardClickHandle, activeCard} = props;
-  const {title, bgPoster, video} = film;
+  const {name, previewVideo, preview} = film;
 
   return (
     <article className="small-movie-card catalog__movies-card" onMouseEnter={handleEventHover} onMouseLeave={handleEventHoverOut} onClick={onCardClickHandle}>
       <div className="small-movie-card__image">
-        <VideoWrapped isPlaying={activeCard === film} poster={bgPoster} video={video}/>
+        <VideoWrapped isPlaying={activeCard === film} poster={preview} video={previewVideo}/>
       </div>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="#" onClick={onCardClickHandle}>{title}</a>
+        <a className="small-movie-card__link" href="#" onClick={onCardClickHandle}>{name}</a>
       </h3>
     </article>
   );
@@ -29,11 +29,7 @@ CardMovie.propTypes = {
   handleEventHover: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
   activeCard: PropTypes.object,
-  film: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    bgPoster: PropTypes.string.isRequired,
-    video: PropTypes.string,
-  }).isRequired
+  film: PropTypes.object.isRequired,
 };
 
 export default CardMovie;

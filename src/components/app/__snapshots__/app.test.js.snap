@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="it"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="Name"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg"
       />
     </div>
     <h1
@@ -69,9 +69,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="Name"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg"
             width="218"
           />
         </div>
@@ -81,7 +81,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            it
+            Name
           </h2>
           <p
             className="movie-card__meta"
@@ -89,12 +89,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Horror
+              Comedy
             </span>
             <span
               className="movie-card__year"
             >
-              2017
+              2000
             </span>
           </p>
           <div
@@ -178,40 +178,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Adventure
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Action
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Comdey
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Dramas
+            Comedy
           </a>
         </li>
       </ul>
@@ -229,8 +196,8 @@ Array [
           >
             <video
               height="175"
-              poster=""
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+              src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
               width="280"
             />
           </div>
@@ -242,7 +209,7 @@ Array [
               href="#"
               onClick={[Function]}
             >
-              Parasite
+              Name
             </a>
           </h3>
         </article>
@@ -257,8 +224,8 @@ Array [
           >
             <video
               height="175"
-              poster=""
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+              src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
               width="280"
             />
           </div>
@@ -270,63 +237,7 @@ Array [
               href="#"
               onClick={[Function]}
             >
-              Avengers: Endgame
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              height="175"
-              poster=""
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="#"
-              onClick={[Function]}
-            >
-              US
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              height="175"
-              poster=""
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="#"
-              onClick={[Function]}
-            >
-              Booksmart
+              Name
             </a>
           </h3>
         </article>
