@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import TabOverview from "../tabs/tab-overview/tab-overview.jsx";
 import TabReviews from "../tabs/tab-reviews/tab-reviews.jsx";
 import TabDetails from "../tabs/tab-details/tab-details.jsx";
+import {Namespace} from "./../../mocks/settings.js";
 
 class TabList extends PureComponent {
   constructor(props) {
@@ -49,7 +50,7 @@ class TabList extends PureComponent {
   }
 }
 const mapStateToProps = (state) => ({
-  comments: state[`DATA`].commentsToFilm,
+  comments: state[Namespace.data].commentsToFilm,
 });
 
 TabList.propTypes = {

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import ListGenres from "./../list-genres/list-genres.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
+import {Namespace} from "./../../mocks/settings.js";
 
 const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
@@ -93,7 +94,7 @@ const Main = React.memo((props) => {
 });
 
 const mapStateToProps = (state) => ({
-  promo: state[`DATA`].promo,
+  promo: state[Namespace.data].promo,
 });
 
 Main.displayName = `Main`;

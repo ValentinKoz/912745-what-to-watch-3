@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import PageMovie from "./page-movie.jsx";
+import {Namespace} from "./../../mocks/settings.js";
 
 const films = [{}, {}, {}];
 
@@ -32,11 +33,11 @@ const displayedItems = 8;
 
 it(`PageMovie is renderer correctly`, () => {
   const store = mockStore({
-    [`DATA`]: {
+    [Namespace.data]: {
       films,
       promo: films[0],
     },
-    [`STATE`]: {
+    [Namespace.state]: {
       genre: `All genres`,
       displayedItems,
     }

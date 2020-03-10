@@ -1,10 +1,12 @@
 const genres = [`All genres`, `Adventure`, `Action`, `Comdey`, `Dramas`];
 
+const Namespace = {data: `DATA`, state: `STATE`};
+
 const DISPLAYED_ITEMS = 8;
 
 const ADD_TO_SHOW = 8;
 
-export {genres, ADD_TO_SHOW, DISPLAYED_ITEMS};
+export {genres, ADD_TO_SHOW, DISPLAYED_ITEMS, Namespace};
 
 export const adaptedObject = (item) => {
   return {

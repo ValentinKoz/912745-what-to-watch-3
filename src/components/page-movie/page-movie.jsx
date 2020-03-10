@@ -6,6 +6,7 @@ import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withActiveTab} from "../../hocs/with-active-tab/with-active-tab.js";
 import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
+import {Namespace} from "./../../mocks/settings.js";
 
 const TabListWrapped = withActiveTab(TabList);
 
@@ -82,7 +83,7 @@ const PageMovie = React.memo((props) => {
   </>);
 });
 const mapStateToProps = (state) => ({
-  films: state[`DATA`].films,
+  films: state[Namespace.data].films,
 });
 
 

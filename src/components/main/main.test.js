@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
+import {Namespace} from "./../../mocks/settings.js";
 
 const mockStore = configureStore([]);
 
@@ -68,11 +69,11 @@ const displayedItems = 8;
 
 it(`Should Main renderer correctly`, () => {
   const store = mockStore({
-    [`DATA`]: {
+    [Namespace.data]: {
       films,
       promo: films[0],
     },
-    [`STATE`]: {
+    [Namespace.state]: {
       genre: `All genres`,
       displayedItems,
     }

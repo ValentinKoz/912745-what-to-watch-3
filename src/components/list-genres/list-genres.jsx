@@ -6,6 +6,7 @@ import ListMovie from "./../list-movie/list-movie.jsx";
 import ShowMoreButton from "./../show-more-button/show-more-button.jsx";
 import {getFilmsByGenre} from "../../reducer/selectors.js";
 import {withActiveItem} from "../../hocs/with-active-item/with-active-item.js";
+import {Namespace} from "./../../mocks/settings.js";
 
 const ListMovieWrapped = withActiveItem(ListMovie);
 
@@ -44,9 +45,9 @@ class ListGenres extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  genre: state[`STATE`].genre,
-  films: state[`DATA`].films,
-  displayedItems: state[`STATE`].displayedItems,
+  genre: state[Namespace.state].genre,
+  films: state[Namespace.data].films,
+  displayedItems: state[Namespace.state].displayedItems,
   filteredFilms: getFilmsByGenre(state),
 });
 

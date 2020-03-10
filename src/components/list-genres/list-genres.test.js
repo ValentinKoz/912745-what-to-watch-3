@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import ListGenres from "./list-genres.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {Namespace} from "./../../mocks/settings.js";
 
 const mockStore = configureStore([]);
 
@@ -51,10 +52,10 @@ const films = [
 
 it(`List Genres renderer correctly`, () => {
   const store = mockStore({
-    [`DATA`]: {
+    [Namespace.data]: {
       films,
     },
-    [`STATE`]: {
+    [Namespace.state]: {
       genre: `All genres`,
       displayedItems,
     }
