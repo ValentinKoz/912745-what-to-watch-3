@@ -33,11 +33,11 @@ const displayedItems = 8;
 
 it(`PageMovie is renderer correctly`, () => {
   const store = mockStore({
-    [Namespace.data]: {
+    [Namespace.DATA]: {
       films,
       promo: films[0],
     },
-    [Namespace.state]: {
+    [Namespace.STATE]: {
       genre: `All genres`,
       displayedItems,
     }

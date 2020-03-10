@@ -4,6 +4,6 @@ import {reducer as state} from "./state/state.js";
 import {Namespace} from "./../mocks/settings.js";
 
 export default combineReducers({
-  [Namespace.data]: data,
-  [Namespace.state]: state
+  [Namespace.DATA]: data,
+  [Namespace.STATE]: state
 });

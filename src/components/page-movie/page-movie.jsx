@@ -83,7 +83,7 @@ const PageMovie = React.memo((props) => {
   </>);
 });
 const mapStateToProps = (state) => ({
-  films: state[Namespace.data].films,
+  films: state[Namespace.DATA].films,
 });
 
 

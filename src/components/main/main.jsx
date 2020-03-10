@@ -94,7 +94,7 @@ const Main = React.memo((props) => {
 });
 
 const mapStateToProps = (state) => ({
-  promo: state[Namespace.data].promo,
+  promo: state[Namespace.DATA].promo,
 });
 
 Main.displayName = `Main`;

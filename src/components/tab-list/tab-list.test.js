@@ -29,11 +29,11 @@ const films = [{
 const displayedItems = 8;
 it(`Render list tabs correctly`, () => {
   const store = mockStore({
-    [Namespace.data]: {
+    [Namespace.DATA]: {
       films,
       promo: films[0],
     },
-    [Namespace.state]: {
+    [Namespace.STATE]: {
       genre: `All genres`,
       displayedItems,
     }

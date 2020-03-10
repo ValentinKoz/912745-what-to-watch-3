@@ -52,10 +52,10 @@ const films = [
 
 it(`List Genres renderer correctly`, () => {
   const store = mockStore({
-    [Namespace.data]: {
+    [Namespace.DATA]: {
       films,
     },
-    [Namespace.state]: {
+    [Namespace.STATE]: {
       genre: `All genres`,
       displayedItems,
     }

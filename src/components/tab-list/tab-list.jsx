@@ -50,7 +50,7 @@ class TabList extends PureComponent {
   }
 }
 const mapStateToProps = (state) => ({
-  comments: state[Namespace.data].commentsToFilm,
+  comments: state[Namespace.DATA].commentsToFilm,
 });
 
 TabList.propTypes = {

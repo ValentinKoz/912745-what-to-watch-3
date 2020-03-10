@@ -45,9 +45,9 @@ class ListGenres extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  genre: state[Namespace.state].genre,
-  films: state[Namespace.data].films,
-  displayedItems: state[Namespace.state].displayedItems,
+  genre: state[Namespace.STATE].genre,
+  films: state[Namespace.DATA].films,
+  displayedItems: state[Namespace.STATE].displayedItems,
   filteredFilms: getFilmsByGenre(state),
 });
 

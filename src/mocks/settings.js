@@ -1,6 +1,6 @@
 const genres = [`All genres`, `Adventure`, `Action`, `Comdey`, `Dramas`];
 
-const Namespace = {data: `DATA`, state: `STATE`};
+const Namespace = {DATA: `DATA`, STATE: `STATE`};
 
 const DISPLAYED_ITEMS = 8;
 

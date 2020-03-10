@@ -58,11 +58,11 @@ Enzyme.configure({
 it(`Should button click`, () => {
   const playButtonHandler = jest.fn();
   const store = mockStore({
-    [Namespace.data]: {
+    [Namespace.DATA]: {
       films,
       promo: films[0],
     },
-    [Namespace.state]: {
+    [Namespace.STATE]: {
       genre: `All genres`,
       displayedItems,
     }
