@@ -4,12 +4,13 @@ import {connect} from "react-redux";
 import ListGenres from "./../list-genres/list-genres.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Namespace} from "./../../mocks/settings.js";
 
 const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
 const Main = React.memo((props) => {
-  const {onCardClickHandle, showPlayer, onShowPlayer, promo} = props;
+  const {onCardClickHandle, showPlayer, onShowPlayer, promo, authorizationStatus} = props;
   const {backgroundImg, name, poster, genre, released} = promo;
 
   return showPlayer ? (
@@ -35,9 +36,12 @@ const Main = React.memo((props) => {
         </div>
 
         <div className="user-block">
-          <div className="user-block__avatar">
+          {authorizationStatus === AuthorizationStatus.AUTH ? (<div className="user-block__avatar">
             <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          </div>) : (<div className="user-block">
+            <a href="/dev-sign" className="user-block__link">Sign in</a>
           </div>
+          )}
         </div>
       </header>
 
@@ -95,6 +99,7 @@ const Main = React.memo((props) => {
 
 const mapStateToProps = (state) => ({
   promo: state[Namespace.DATA].promo,
+  authorizationStatus: state[Namespace.USER].authorizationStatus,
 });
 
 Main.displayName = `Main`;
@@ -103,6 +108,7 @@ Main.propTypes = {
   promo: PropTypes.object.isRequired,
   showPlayer: PropTypes.bool.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
 };
 

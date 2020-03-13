@@ -59,6 +59,9 @@ it(`Render App`, () => {
     [Namespace.STATE]: {
       genre: `All genres`,
       displayedItems,
+    },
+    [Namespace.USER]: {
+      authorizationStatus: `NO_AUTH`,
     }
   });
   const tree = renderer
