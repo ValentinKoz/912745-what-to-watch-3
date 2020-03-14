@@ -40,6 +40,9 @@ it(`PageMovie is renderer correctly`, () => {
     [Namespace.STATE]: {
       genre: `All genres`,
       displayedItems,
+    },
+    [Namespace.USER]: {
+      authorizationStatus: `NO_AUTH`
     }
   });
   const tree = renderer.create(

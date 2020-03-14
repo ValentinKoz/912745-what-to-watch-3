@@ -6,6 +6,7 @@ import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withActiveTab} from "../../hocs/with-active-tab/with-active-tab.js";
 import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Namespace} from "./../../mocks/settings.js";
 
 const TabListWrapped = withActiveTab(TabList);
@@ -13,7 +14,7 @@ const TabListWrapped = withActiveTab(TabList);
 const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
 const PageMovie = React.memo((props) => {
-  const {film, onCardClickHandle, films, showPlayer, onShowPlayer} = props;
+  const {film, onCardClickHandle, films, showPlayer, onShowPlayer, authorizationStatus} = props;
   const {genre, released, poster, name, backgroundImg, backgroundColor} = film;
   return showPlayer ? (
     <FullVideoPlayerWrapped
@@ -37,9 +38,12 @@ const PageMovie = React.memo((props) => {
         </div>
 
         <div className="user-block">
-          <div className="user-block__avatar">
+          {authorizationStatus === AuthorizationStatus.AUTH ? (<div className="user-block__avatar">
             <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          </div>) : (<div className="user-block">
+            <a href="/dev-sign" className="user-block__link">Sign in</a>
           </div>
+          )}
         </div>
       </header>
 
@@ -84,6 +88,7 @@ const PageMovie = React.memo((props) => {
 });
 const mapStateToProps = (state) => ({
   films: state[Namespace.DATA].films,
+  authorizationStatus: state[Namespace.USER].authorizationStatus,
 });
 
 
@@ -94,6 +99,7 @@ PageMovie.propTypes = {
   showPlayer: PropTypes.bool.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   films: PropTypes.array.isRequired,
 };
 

@@ -65,6 +65,9 @@ it(`Should button click`, () => {
     [Namespace.STATE]: {
       genre: `All genres`,
       displayedItems,
+    },
+    [Namespace.USER]: {
+      authorizationStatus: `NO_AUTH`
     }
   });
   const main = mount(
