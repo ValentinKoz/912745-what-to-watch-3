@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import TabList from "./../tab-list/tab-list.jsx";
 import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
@@ -15,7 +16,7 @@ const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
 const PageMovie = React.memo((props) => {
   const {film, onCardClickHandle, films, showPlayer, onShowPlayer, authorizationStatus} = props;
-  const {genre, released, poster, name, backgroundImg, backgroundColor} = film;
+  const {genre, released, poster, name, backgroundImg, backgroundColor, id} = film;
   return showPlayer ? (
     <FullVideoPlayerWrapped
       onExit={onShowPlayer}
@@ -30,11 +31,11 @@ const PageMovie = React.memo((props) => {
 
       <header className="page-header movie-card__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link to="/" className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="user-block">
@@ -68,7 +69,7 @@ const PageMovie = React.memo((props) => {
               </svg>
               <span>My list</span>
             </button>
-            <a href="add-review.html" className="btn movie-card__button">Add review</a>
+            {authorizationStatus === AuthorizationStatus.AUTH && (<Link to={`/dev-review/${id}`} className="btn movie-card__button">Add review</Link>)}
           </div>
         </div>
       </div>
