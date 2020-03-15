@@ -216,6 +216,7 @@ exports[`Render App 1`] = `
           <button
             className="add-review__btn"
             disabled="disabled"
+            title="Текст сообщения должен быть больше 50 символов"
             type="submit"
           >
             Post
