@@ -5,7 +5,6 @@ import {Link, withRouter} from "react-router-dom";
 class AddReview extends PureComponent {
   constructor(props) {
     super(props);
-
   }
   handleSubmit(evt) {
     const {textComment, rating, postComment, film} = this.props;
@@ -20,6 +19,18 @@ class AddReview extends PureComponent {
       rating,
     });
     this.props.history.push(`/`);
+  }
+
+  handleTitleMessage() {
+    const {rating, textComment} = this.props;
+    if (rating === 0) {
+      return `Вы не выбрали рейтинг`;
+    } else if (textComment.length <= 50) {
+      return `Текст сообщения должен быть больше 50 символов`;
+    } else if (textComment.length >= 400) {
+      return `Текст сообщения должен быть меньше 400 символов`;
+    }
+    return ``;
   }
 
   isAvalible() {
@@ -99,7 +110,7 @@ class AddReview extends PureComponent {
             <div className="add-review__text">
               <textarea maxLength="400" onChange={onChangeText} value={textComment} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
               <div className="add-review__submit">
-                <button className="add-review__btn" disabled={this.isAvalible() ? `` : `disabled`} type="submit">Post</button>
+                <button className="add-review__btn" title={this.handleTitleMessage()} disabled={this.isAvalible() ? `` : `disabled`} type="submit">Post</button>
               </div>
             </div>
 

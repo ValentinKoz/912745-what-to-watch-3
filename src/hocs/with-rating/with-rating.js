@@ -6,7 +6,7 @@ export const withRating = (Componet) => {
       super(props);
 
       this.state = {
-        rating: 5,
+        rating: 0,
         textComment: ``,
       };
       this.handleChange = this.handleChange.bind(this);
