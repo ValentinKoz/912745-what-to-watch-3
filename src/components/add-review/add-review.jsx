@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -11,11 +11,15 @@ class AddReview extends PureComponent {
     const {textComment, rating, postComment, film} = this.props;
     evt.preventDefault();
 
+    const textarea = document.getElementById(`review-text`);
+    textarea.disabled = true;
+
     postComment({
       id: film.id,
       comment: textComment,
       rating,
     });
+    this.props.history.push(`/`);
   }
 
   isAvalible() {
@@ -106,6 +110,7 @@ class AddReview extends PureComponent {
   }
 }
 AddReview.propTypes = {
+  history: PropTypes.object,
   film: PropTypes.object.isRequired,
   rating: PropTypes.number.isRequired,
   onChangeRating: PropTypes.func.isRequired,
@@ -114,4 +119,4 @@ AddReview.propTypes = {
   postComment: PropTypes.func.isRequired,
 };
 
-export default AddReview;
+export default withRouter(AddReview);
