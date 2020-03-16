@@ -4,10 +4,14 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Main from "./../main/main.jsx";
 import SignIn from "./../sign-in/sign-in.jsx";
+import AddReview from "./../add-review/add-review.jsx";
 import PageMovie from "./../page-movie/page-movie.jsx";
 import {Operation, AuthorizationStatus} from "../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {withRating} from "./../../hocs/with-rating/with-rating.js";
 import {Namespace} from "./../../mocks/settings.js";
 
+const AddReviewWrapped = withRating(AddReview);
 class App extends PureComponent {
 
   _renderApp() {
@@ -27,19 +31,21 @@ class App extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, login} = this.props;
+    const {authorizationStatus, login, activeItem, postComment} = this.props;
+    const currentId = activeItem && activeItem.id;
 
     return (<BrowserRouter>
       <Switch>
         <Route exact path="/">
           {this._renderApp()}
         </Route>
-        <Route exact path="/dev-component">
-        </Route>
         <Route exact path="/dev-sign">
           {authorizationStatus === AuthorizationStatus.NO_AUTH ?
             (<SignIn onSubmit={login}/>) : (this._renderApp())
           }
+        </Route>
+        <Route exact path={`/dev-review/${currentId}`} >
+          <AddReviewWrapped postComment={postComment} film={activeItem}/>
         </Route>
       </Switch>
     </BrowserRouter>);
@@ -54,12 +60,16 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(Operation.login(authData));
+  },
+  postComment(commnetData) {
+    dispatch(DataOperation.postComment(commnetData));
   }
 });
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  postComment: PropTypes.func.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
   showPlayer: PropTypes.bool.isRequired,
   onSetActiveItem: PropTypes.func.isRequired,

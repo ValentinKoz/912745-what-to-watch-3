@@ -49,6 +49,15 @@ const Operation = {
         dispatch(ActionCreator.loadComments(response.data));
       });
   },
+  postComment: (commnetData) => (dispatch, getState, api) => {
+    return api.post(`/comments/${commnetData.id}`, {
+      "rating": commnetData.rating,
+      "comment": commnetData.comment,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.loadComments(response.data));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
