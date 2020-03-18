@@ -4,6 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
 import {Namespace} from "./../../mocks/settings.js";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -84,13 +85,15 @@ it(`Should Main renderer correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            showPlayer={false}
-            onShowPlayer={() => {}}
-            films={films}
-            onPlayButtonClick={() => {}}
-            onCardClickHandle={() => {}}
-          />
+          <BrowserRouter>
+            <Main
+              showPlayer={false}
+              onShowPlayer={() => {}}
+              films={films}
+              onPlayButtonClick={() => {}}
+              onCardClickHandle={() => {}}
+            />
+          </BrowserRouter>
         </Provider>, {
           createNodeMock: () => {
             return {};

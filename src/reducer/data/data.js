@@ -1,5 +1,5 @@
 import {extend} from "./../../utils.js";
-import {adaptedObject} from "./../../mocks/settings.js";
+import {adaptedObject, Namespace} from "./../../mocks/settings.js";
 
 const initialState = {
   films: [],
@@ -57,7 +57,21 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadComments(response.data));
       });
-  }
+  },
+  changeFavorite: (film) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${film.id}/${film.status}`)
+      .then((response) => {
+        const adaptedItem = adaptedObject(response.data);
+        const state = getState();
+
+        if (state[Namespace.DATA].promo.id === adaptedItem.id) {
+          dispatch(ActionCreator.loadPromo(adaptedItem));
+        }
+
+        const films = [...state[Namespace.DATA].films.filter((movie) => movie.id !== adaptedItem.id), adaptedItem];
+        dispatch(ActionCreator.loadFilms(films));
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {

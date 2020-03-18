@@ -1,3 +1,5 @@
+import history from "../../history.js";
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -49,6 +51,7 @@ const Operation = {
     })
         .then(() => {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+          history.push(`/`);
         });
   },
 };

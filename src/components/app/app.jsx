@@ -1,60 +1,59 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Main from "./../main/main.jsx";
 import SignIn from "./../sign-in/sign-in.jsx";
 import AddReview from "./../add-review/add-review.jsx";
 import PageMovie from "./../page-movie/page-movie.jsx";
-import {Operation, AuthorizationStatus} from "../../reducer/user/user.js";
+import {Operation} from "../../reducer/user/user.js";
+import PrivateRoute from "../private-route/private-route.jsx";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {withRating} from "./../../hocs/with-rating/with-rating.js";
 import {Namespace} from "./../../mocks/settings.js";
+import history from "./../../history.js";
 
 const AddReviewWrapped = withRating(AddReview);
 class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  _renderApp() {
-    const {onSetActiveItem, activeItem, showPlayer, onShowPlayer} = this.props;
+    this.handleSelectFilm = this.handleSelectFilm.bind(this);
+  }
 
-    if (!activeItem) {
-      return (<Main
-        activeItem={activeItem}
-        onCardClickHandle={onSetActiveItem}
-        showPlayer={showPlayer}
-        onShowPlayer={onShowPlayer}
-      />);
-    } if (activeItem) {
-      return (<PageMovie onCardClickHandle={onSetActiveItem} film={activeItem} showPlayer={showPlayer} onShowPlayer={onShowPlayer}/>);
-    }
-    return null;
+  handleSelectFilm(id) {
+    history.push(`/films/${id}`);
+    this.props.onSetActiveId(id);
   }
 
   render() {
-    const {authorizationStatus, login, activeItem, postComment} = this.props;
-    const currentId = activeItem && activeItem.id;
+    const {login, activeId, postComment, showPlayer, onShowPlayer, films} = this.props;
+    const film = films.find((movie) => movie.id === activeId);
 
-    return (<BrowserRouter>
+    return (<Router history={history}>
       <Switch>
         <Route exact path="/">
-          {this._renderApp()}
+          <Main
+            onCardClickHandle={this.handleSelectFilm}
+            showPlayer={showPlayer}
+            onShowPlayer={onShowPlayer}
+          />
         </Route>
-        <Route exact path="/dev-sign">
-          {authorizationStatus === AuthorizationStatus.NO_AUTH ?
-            (<SignIn onSubmit={login}/>) : (this._renderApp())
-          }
+        <Route exact path="/login">
+          <SignIn onSubmit={login}/>
         </Route>
-        <Route exact path={`/dev-review/${currentId}`} >
-          <AddReviewWrapped postComment={postComment} film={activeItem}/>
+        <Route exact path={`/films/${activeId}`}>
+          <PageMovie onCardClickHandle={this.handleSelectFilm} film={film} showPlayer={showPlayer} onShowPlayer={onShowPlayer}/>
         </Route>
+        <PrivateRoute exact path={`/add-review/${activeId}`} render={() => (<AddReviewWrapped postComment={postComment} film={film}/>)}/>
       </Switch>
-    </BrowserRouter>);
+    </Router>);
   }
 
 }
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: state[Namespace.USER].authorizationStatus,
+  films: state[Namespace.DATA].films,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -67,13 +66,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
+  films: PropTypes.array,
   login: PropTypes.func.isRequired,
   postComment: PropTypes.func.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
   showPlayer: PropTypes.bool.isRequired,
-  onSetActiveItem: PropTypes.func.isRequired,
-  activeItem: PropTypes.object,
+  onSetActiveId: PropTypes.func.isRequired,
+  activeId: PropTypes.string,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

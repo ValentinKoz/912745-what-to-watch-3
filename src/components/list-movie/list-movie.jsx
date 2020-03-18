@@ -5,12 +5,13 @@ import PropTypes from "prop-types";
 import CardMovie from "../card-movie/card-movie.jsx";
 
 const ListMovie = React.memo((props) => {
-  const {films, onCardClickHandle, onSetActiveItem, activeItem, onLoadComments} = props;
+  const {films, onCardClickHandle, onSetActiveId, activeId, onLoadComments} = props;
+
   return (<div className="catalog__movies-list">{
-    films.map((film, i) => <CardMovie activeCard={activeItem} handleEventHover={
-      () => onSetActiveItem(film)} handleEventHoverOut={() => onSetActiveItem(null)} key={`${i}-${film.name}`} film={film} onCardClickHandle={
+    films.map((film, i) => <CardMovie activeId={activeId} handleEventHover={
+      () => onSetActiveId(film.id)} handleEventHoverOut={() => onSetActiveId(null)} key={`${i}-${film.name}`} film={film} onCardClickHandle={
       () => {
-        onCardClickHandle(film);
+        onCardClickHandle(film.id);
         onLoadComments(film.id);
       }} />)} </div>);
 });
@@ -24,10 +25,10 @@ const mapDispatchToProps = (dispatch) => ({
 ListMovie.displayName = `ListMovie`;
 
 ListMovie.propTypes = {
-  activeItem: PropTypes.object,
+  activeId: PropTypes.string,
   films: PropTypes.array.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
-  onSetActiveItem: PropTypes.func.isRequired,
+  onSetActiveId: PropTypes.func.isRequired,
   onLoadComments: PropTypes.func.isRequired,
 };
 
