@@ -27,7 +27,7 @@ it(`Should make a correct get login`, () => {
   const dispatch = jest.fn();
 
 
-  mock.onGet(`/login`).reply(AuthorizationStatus.AUTH, []);
+  mock.onGet(`/login`).reply(200, []);
   Operation.checkAuth()(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({
@@ -45,7 +45,7 @@ it(`Should make a correct post login`, () => {
     password: `Password`,
   });
 
-  mock.onPost(`/login`).reply(AuthorizationStatus.AUTH, []);
+  mock.onPost(`/login`).reply(200, []);
   return login(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({
