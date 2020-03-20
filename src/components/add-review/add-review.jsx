@@ -18,7 +18,7 @@ class AddReview extends PureComponent {
       comment: textComment,
       rating,
     });
-    this.props.history.push(`/`);
+    this.props.history.push(`/films/${film.id}`);
   }
 
   handleTitleMessage() {
@@ -35,7 +35,7 @@ class AddReview extends PureComponent {
 
   isAvalible() {
     const {rating, textComment} = this.props;
-    if (rating !== `0` && textComment.length >= 50 && textComment.length <= 400) {
+    if (rating !== 0 && textComment.length >= 50 && textComment.length <= 400) {
       return true;
     }
     return false;
@@ -43,7 +43,7 @@ class AddReview extends PureComponent {
 
   render() {
     const {film, rating, onChangeRating, onChangeText, textComment} = this.props;
-    const {poster, name, backgroundImg, backgroundColor} = film;
+    const {poster, name, backgroundImg, backgroundColor, id} = film;
 
     return (
       <section className="movie-card movie-card--full" style={{background: backgroundColor}}>
@@ -56,7 +56,7 @@ class AddReview extends PureComponent {
 
           <header className="page-header">
             <div className="logo">
-              <Link to="/" className="logo__link">
+              <Link to={`/films/${id}`} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -66,7 +66,7 @@ class AddReview extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to="/" className="breadcrumbs__link">{name}</Link>
+                  <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>

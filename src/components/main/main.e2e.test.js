@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main";
 import {Namespace} from "./../../mocks/settings.js";
+import {BrowserRouter} from "react-router-dom";
 
 const films = [
   {
@@ -72,13 +73,15 @@ it(`Should button click`, () => {
   });
   const main = mount(
       <Provider store={store}>
-        <Main
-          showPlayer={false}
-          onShowPlayer={playButtonHandler}
-          films={films}
-          onPlayButtonClick={() => {}}
-          onCardClickHandle={() => {}}
-        />
+        <BrowserRouter>
+          <Main
+            showPlayer={false}
+            onShowPlayer={playButtonHandler}
+            films={films}
+            onPlayButtonClick={() => {}}
+            onCardClickHandle={() => {}}
+          />
+        </BrowserRouter>
       </Provider>
   );
 

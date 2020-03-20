@@ -6,6 +6,7 @@ import TabList from "./../tab-list/tab-list.jsx";
 import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
 import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withActiveTab} from "../../hocs/with-active-tab/with-active-tab.js";
+import {Operation as Data} from "./../../reducer/data/data.js";
 import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Namespace} from "./../../mocks/settings.js";
@@ -15,8 +16,8 @@ const TabListWrapped = withActiveTab(TabList);
 const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
 
 const PageMovie = React.memo((props) => {
-  const {film, onCardClickHandle, films, showPlayer, onShowPlayer, authorizationStatus} = props;
-  const {genre, released, poster, name, backgroundImg, backgroundColor, id} = film;
+  const {film, onCardClickHandle, films, showPlayer, onShowPlayer, authorizationStatus, changeFavorite} = props;
+  const {genre, released, poster, name, backgroundImg, backgroundColor, id, isFavorite} = film;
   return showPlayer ? (
     <FullVideoPlayerWrapped
       onExit={onShowPlayer}
@@ -40,9 +41,9 @@ const PageMovie = React.memo((props) => {
 
         <div className="user-block">
           {authorizationStatus === AuthorizationStatus.AUTH ? (<div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <img src="../img/avatar.jpg" alt="User avatar" width="63" height="63" />
           </div>) : (<div className="user-block">
-            <a href="/dev-sign" className="user-block__link">Sign in</a>
+            <Link to="/login" className="user-block__link">Sign in</Link>
           </div>
           )}
         </div>
@@ -63,13 +64,19 @@ const PageMovie = React.memo((props) => {
               </svg>
               <span>Play</span>
             </button>
-            <button className="btn btn--list movie-card__button" type="button">
-              <svg viewBox="0 0 19 20" width="19" height="20">
-                <use xlinkHref="#add"></use>
-              </svg>
-              <span>My list</span>
-            </button>
-            {authorizationStatus === AuthorizationStatus.AUTH && (<Link to={`/dev-review/${id}`} className="btn movie-card__button">Add review</Link>)}
+            {isFavorite ?
+              (<button onClick={()=> changeFavorite(id, 0)} className="btn btn--list movie-card__button" type="button">
+                <svg viewBox="0 0 18 14" width="18" height="14">
+                  <use xlinkHref="#in-list"></use>
+                </svg>
+                <span>My list</span>
+              </button>) : (<button onClick={()=> changeFavorite(id, 1)} className="btn btn--list movie-card__button" type="button">
+                <svg viewBox="0 0 19 20" width="19" height="20">
+                  <use xlinkHref="#add"></use>
+                </svg>
+                <span>My list</span>
+              </button>)}
+            {authorizationStatus === AuthorizationStatus.AUTH && (<Link to={`/add-review/${id}`} className="btn movie-card__button">Add review</Link>)}
           </div>
         </div>
       </div>
@@ -92,6 +99,10 @@ const mapStateToProps = (state) => ({
   authorizationStatus: state[Namespace.USER].authorizationStatus,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavorite: (id, status) => dispatch(Data.changeFavorite({id, status})),
+});
+
 
 PageMovie.displayName = `PageMovie`;
 
@@ -100,9 +111,10 @@ PageMovie.propTypes = {
   showPlayer: PropTypes.bool.isRequired,
   onShowPlayer: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
+  changeFavorite: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   films: PropTypes.array.isRequired,
 };
 
 export {PageMovie};
-export default connect(mapStateToProps)(PageMovie);
+export default connect(mapStateToProps, mapDispatchToProps)(PageMovie);

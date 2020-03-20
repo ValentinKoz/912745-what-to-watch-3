@@ -70,8 +70,8 @@ it(`Render App`, () => {
           <App
             showPlayer={false}
             onShowPlayer={() => {}}
-            activeItem={null}
-            onSetActiveItem={() => {}}
+            activeId={null}
+            onSetActiveId={() => {}}
             films={films}
           />
         </Provider>, {

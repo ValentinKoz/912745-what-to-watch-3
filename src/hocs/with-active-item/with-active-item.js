@@ -7,24 +7,24 @@ export const withActiveItem = (Component) => {
       super(props);
 
       this.state = {
-        activeItem: null
+        activeId: null
       };
 
-      this.handleSetActiveItem = this.handleSetActiveItem.bind(this);
+      this.handleSetActiveId = this.handleSetActiveId.bind(this);
     }
 
-    handleSetActiveItem(film) {
-      this.setState({activeItem: film});
+    handleSetActiveId(id) {
+      this.setState({activeId: id});
     }
 
     render() {
-      const {activeItem} = this.state;
+      const {activeId} = this.state;
 
       return (
         <Component
           {...this.props}
-          onSetActiveItem={this.handleSetActiveItem}
-          activeItem={activeItem}
+          onSetActiveId={this.handleSetActiveId}
+          activeId={activeId}
         />
       );
     }

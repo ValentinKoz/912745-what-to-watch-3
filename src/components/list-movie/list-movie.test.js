@@ -81,7 +81,7 @@ it(`ListMovie is renderer correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <ListMovie onSetActiveItem={() => {}} films={films} onCardClickHandle={() => {}}/>
+          <ListMovie onSetActiveId={() => {}} films={films} onCardClickHandle={() => {}}/>
         </Provider>, {
           createNodeMock: () => {
             return {};
