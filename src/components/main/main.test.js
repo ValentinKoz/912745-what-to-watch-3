@@ -87,10 +87,7 @@ it(`Should Main renderer correctly`, () => {
         <Provider store={store}>
           <BrowserRouter>
             <Main
-              showPlayer={false}
-              onShowPlayer={() => {}}
-              films={films}
-              onPlayButtonClick={() => {}}
+              handleSetActiveIdNull={() => {}}
               onCardClickHandle={() => {}}
             />
           </BrowserRouter>

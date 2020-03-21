@@ -1,9 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FullVideoPlayer from "./full-video-player.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import MyList from "./my-list.jsx";
+import {Namespace} from "./../../mocks/settings.js";
 import {BrowserRouter} from "react-router-dom";
 
-const movie = {
+const films = [{}, {}, {}];
+
+const mockStore = configureStore([]);
+
+const film = [{
   id: `1`,
   name: `Name`,
   poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
@@ -20,31 +27,36 @@ const movie = {
   runTime: 104,
   genre: `Comedy`,
   released: 2000,
-  isFavorite: false
-};
+  isFavorite: true
+}];
 
-it(`Render Full Video Player`, () => {
-  const tree = renderer
-    .create(
+const displayedItems = 8;
+
+it(`PageMovie is renderer correctly`, () => {
+  const store = mockStore({
+    [Namespace.DATA]: {
+      films,
+      promo: films[0],
+      favoriteFilms: film,
+    },
+    [Namespace.STATE]: {
+      genre: `All genres`,
+      displayedItems,
+    },
+    [Namespace.USER]: {
+      authorizationStatus: `AUTH`
+    }
+  });
+  const tree = renderer.create(
+      <Provider store={store}>
         <BrowserRouter>
-          <FullVideoPlayer
-            onExit={()=>{}}
-            movie={movie}
-            _videoRef={React.createRef()}
-            isPlaying={true}
-            getRemainingTime={() => {}}
-            handleLoadMetaData={() => {}}
-            handleFullScreen={() => {}}
-            getProgress={() => {}}
-            handleTimeUpdate={() => {}}
-            handleVideoPlay={() => {}}
-          />
-        </BrowserRouter>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
-      .toJSON();
+          <MyList onCardClickHandle={() => {}}/>
+        </BrowserRouter>
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

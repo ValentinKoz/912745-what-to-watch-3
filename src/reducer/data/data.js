@@ -5,11 +5,16 @@ const initialState = {
   films: [],
   promo: {},
   commentsToFilm: [],
+  favoriteFilms: [],
 };
 
 const ActionCreator = {
   loadFilms: (films) => ({
     type: ActionType.LOAD_FILMS,
+    payload: films,
+  }),
+  loadFavorite: (films) => ({
+    type: ActionType.LOAD_FAVORITE,
     payload: films,
   }),
   loadPromo: (promo) => ({
@@ -26,6 +31,7 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
+  LOAD_FAVORITE: `LOAD_FAVORITE`,
 };
 
 const Operation = {
@@ -34,6 +40,13 @@ const Operation = {
       .then((response) => {
         const adaptedResponse = response.data.map((item) => adaptedObject(item));
         dispatch(ActionCreator.loadFilms(adaptedResponse));
+      });
+  },
+  loadFavorite: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        const adaptedResponse = response.data.map((item) => adaptedObject(item));
+        dispatch(ActionCreator.loadFavorite(adaptedResponse));
       });
   },
   loadPromo: () => (dispatch, getState, api) => {
@@ -87,6 +100,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
         commentsToFilm: action.payload,
+      });
+    case ActionType.LOAD_FAVORITE:
+      return extend(state, {
+        favoriteFilms: action.payload,
       });
     default:
       return state;

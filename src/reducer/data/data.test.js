@@ -94,6 +94,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     films: [],
     promo: {},
     commentsToFilm: [],
+    favoriteFilms: [],
   });
 });
 
@@ -102,6 +103,7 @@ it(`Reducer should load films`, () => {
     films: [],
     promo: {},
     commentsToFilm: [],
+    favoriteFilms: [],
   }, {
     type: ActionType.LOAD_FILMS,
     payload: films
@@ -110,6 +112,7 @@ it(`Reducer should load films`, () => {
     films,
     promo: {},
     commentsToFilm: [],
+    favoriteFilms: [],
   });
 });
 
@@ -118,6 +121,7 @@ it(`Reducer should load promo`, () => {
     films: [],
     promo: {},
     commentsToFilm: [],
+    favoriteFilms: [],
   }, {
     type: ActionType.LOAD_PROMO,
     payload: films[0]
@@ -126,6 +130,7 @@ it(`Reducer should load promo`, () => {
     films: [],
     promo: films[0],
     commentsToFilm: [],
+    favoriteFilms: [],
   });
 });
 
@@ -134,6 +139,7 @@ it(`Reducer should load comments`, () => {
     films: [],
     promo: {},
     commentsToFilm: [],
+    favoriteFilms: [],
   }, {
     type: ActionType.LOAD_COMMENTS,
     payload: comments
@@ -142,6 +148,7 @@ it(`Reducer should load comments`, () => {
     films: [],
     promo: {},
     commentsToFilm: comments,
+    favoriteFilms: [],
   });
 });
 

@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 const FullVideoPlayer = (props) => {
-  const {onExit, movie, isPlaying, _videoRef, getRemainingTime, handleLoadMetaData, handleFullScreen, getProgress, handleTimeUpdate, handleVideoPlay} = props;
+  const {movie, isPlaying, _videoRef, getRemainingTime, handleLoadMetaData, handleFullScreen, getProgress, handleTimeUpdate, handleVideoPlay} = props;
   return (<div className="player">
     <video ref={_videoRef} autoPlay={`autoplay`} onLoadedMetadata={handleLoadMetaData} className="player__video" poster={movie.preview} onTimeUpdate={handleTimeUpdate}>
       <source src={movie.video}/>
     </video>
 
-    <button onClick={onExit} type="button" className="player__exit">Exit</button>
+    <Link to={`/`} type="button" className="player__exit">Exit</Link>
 
     <div className="player__controls">
       <div className="player__controls-row">
@@ -51,7 +52,6 @@ const FullVideoPlayer = (props) => {
 };
 
 FullVideoPlayer.propTypes = {
-  onExit: PropTypes.func.isRequired,
   movie: PropTypes.object.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   _videoRef: PropTypes.oneOfType([

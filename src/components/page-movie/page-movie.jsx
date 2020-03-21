@@ -4,25 +4,17 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import TabList from "./../tab-list/tab-list.jsx";
 import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
-import FullVideoPlayer from "./../full-video-player/full-video-player.jsx";
 import {withActiveTab} from "../../hocs/with-active-tab/with-active-tab.js";
 import {Operation as Data} from "./../../reducer/data/data.js";
-import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Namespace} from "./../../mocks/settings.js";
 
 const TabListWrapped = withActiveTab(TabList);
 
-const FullVideoPlayerWrapped = withFullScreenPlayer(FullVideoPlayer);
-
 const PageMovie = React.memo((props) => {
-  const {film, onCardClickHandle, films, showPlayer, onShowPlayer, authorizationStatus, changeFavorite} = props;
+  const {film, onCardClickHandle, films, authorizationStatus, changeFavorite} = props;
   const {genre, released, poster, name, backgroundImg, backgroundColor, id, isFavorite} = film;
-  return showPlayer ? (
-    <FullVideoPlayerWrapped
-      onExit={onShowPlayer}
-      movie={film}
-    />) : (<><section className="movie-card movie-card--full" style={{background: backgroundColor}}>
+  return <><section className="movie-card movie-card--full" style={{background: backgroundColor}}>
     <div className="movie-card__hero">
       <div className="movie-card__bg">
         <img src={backgroundImg} alt={name} />
@@ -40,9 +32,11 @@ const PageMovie = React.memo((props) => {
         </div>
 
         <div className="user-block">
-          {authorizationStatus === AuthorizationStatus.AUTH ? (<div className="user-block__avatar">
-            <img src="../img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>) : (<div className="user-block">
+          {authorizationStatus === AuthorizationStatus.AUTH ? (<Link to="/myList">
+            <div className="user-block__avatar">
+              <img src="../img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            </div>
+          </Link>) : (<div className="user-block">
             <Link to="/login" className="user-block__link">Sign in</Link>
           </div>
           )}
@@ -58,12 +52,12 @@ const PageMovie = React.memo((props) => {
           </p>
 
           <div className="movie-card__buttons">
-            <button onClick={onShowPlayer} className="btn btn--play movie-card__button" type="button">
+            <Link to={`/films/${id}/player`} className="btn btn--play movie-card__button" type="button">
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>
               <span>Play</span>
-            </button>
+            </Link>
             {isFavorite ?
               (<button onClick={()=> changeFavorite(id, 0)} className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 18 14" width="18" height="14">
@@ -76,7 +70,7 @@ const PageMovie = React.memo((props) => {
                 </svg>
                 <span>My list</span>
               </button>)}
-            {authorizationStatus === AuthorizationStatus.AUTH && (<Link to={`/add-review/${id}`} className="btn movie-card__button">Add review</Link>)}
+            {authorizationStatus === AuthorizationStatus.AUTH && (<Link to={`/films/:${id}/review`} className="btn movie-card__button">Add review</Link>)}
           </div>
         </div>
       </div>
@@ -92,7 +86,7 @@ const PageMovie = React.memo((props) => {
     </div>
   </section>
   <MoreLikeThis films={films} currentGenre={genre} currentFilm={film} onCardClickHandle={onCardClickHandle}/>
-  </>);
+  </>;
 });
 const mapStateToProps = (state) => ({
   films: state[Namespace.DATA].films,
@@ -108,8 +102,6 @@ PageMovie.displayName = `PageMovie`;
 
 PageMovie.propTypes = {
   film: PropTypes.object.isRequired,
-  showPlayer: PropTypes.bool.isRequired,
-  onShowPlayer: PropTypes.func.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
   changeFavorite: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
