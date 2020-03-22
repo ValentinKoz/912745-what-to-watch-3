@@ -94,7 +94,6 @@ export const withFullScreenPlayer = (Component) => {
     }
   }
   WithFullScreenPlayer.propTypes = {
-    onExit: PropTypes.func.isRequired,
     movie: PropTypes.object.isRequired,
   };
 

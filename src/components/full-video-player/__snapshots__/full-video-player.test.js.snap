@@ -15,13 +15,14 @@ exports[`Render Full Video Player 1`] = `
       src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
     />
   </video>
-  <button
+  <a
     className="player__exit"
+    href="/"
     onClick={[Function]}
     type="button"
   >
     Exit
-  </button>
+  </a>
   <div
     className="player__controls"
   >

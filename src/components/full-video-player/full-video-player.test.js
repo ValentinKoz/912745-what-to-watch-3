@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FullVideoPlayer from "./full-video-player.jsx";
+import {BrowserRouter} from "react-router-dom";
 
 const movie = {
   id: `1`,
@@ -24,22 +25,25 @@ const movie = {
 
 it(`Render Full Video Player`, () => {
   const tree = renderer
-    .create(<FullVideoPlayer
-      onExit={()=>{}}
-      movie={movie}
-      _videoRef={React.createRef()}
-      isPlaying={true}
-      getRemainingTime={() => {}}
-      handleLoadMetaData={() => {}}
-      handleFullScreen={() => {}}
-      getProgress={() => {}}
-      handleTimeUpdate={() => {}}
-      handleVideoPlay={() => {}}
-    />, {
-      createNodeMock: () => {
-        return {};
-      }
-    })
+    .create(
+        <BrowserRouter>
+          <FullVideoPlayer
+            onExit={()=>{}}
+            movie={movie}
+            _videoRef={React.createRef()}
+            isPlaying={true}
+            getRemainingTime={() => {}}
+            handleLoadMetaData={() => {}}
+            handleFullScreen={() => {}}
+            getProgress={() => {}}
+            handleTimeUpdate={() => {}}
+            handleVideoPlay={() => {}}
+          />
+        </BrowserRouter>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
       .toJSON();
 
   expect(tree).toMatchSnapshot();
