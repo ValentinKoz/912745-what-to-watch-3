@@ -22,7 +22,7 @@ const films = [
     runTime: 104,
     genre: `Comedy`,
     released: 2000,
-    isFavorite: false
+    isFavorite: true
   }
 ];
 
@@ -191,6 +191,20 @@ it(`Should make a correct Api`, () => {
     expect(dispatch).toHaveBeenCalledWith({
       type: ActionType.LOAD_COMMENTS,
       payload: []
+    });
+  });
+});
+
+it(`Should make a correct Api`, () => {
+  const mock = new MockAdapter(api);
+  const dispatch = jest.fn();
+
+  mock.onGet(`/favorite`).reply(200, [film]);
+  Operation.loadFavorite()(dispatch, () => {}, api).then(() => {
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith({
+      type: ActionType.LOAD_FAVORITE,
+      payload: [afterFilm]
     });
   });
 });

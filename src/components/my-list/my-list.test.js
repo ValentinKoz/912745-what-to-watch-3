@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import MyList from "./my-list.jsx";
+import {MyList} from "./my-list.jsx";
 import {Namespace} from "./../../mocks/settings.js";
 import {BrowserRouter} from "react-router-dom";
 
@@ -50,7 +50,7 @@ it(`PageMovie is renderer correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <MyList onCardClickHandle={() => {}}/>
+          <MyList onCardClickHandle={() => {}} favoriteFilms={film} loadFilms={()=>{}}/>
         </BrowserRouter>
       </Provider>, {
         createNodeMock: () => {
