@@ -87,7 +87,7 @@ it(`Should Main renderer correctly`, () => {
         <Provider store={store}>
           <BrowserRouter>
             <Main
-              handleSetActiveIdNull={() => {}}
+              onSetActiveIdNull={() => {}}
               onCardClickHandle={() => {}}
             />
           </BrowserRouter>

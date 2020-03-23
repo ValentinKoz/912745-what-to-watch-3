@@ -53,9 +53,9 @@ it(`Hover on card should pass to the callback`, () => {
 
   const screen = shallow(<CardMovie
     film={film}
-    handleEventHover={handleEventHover}
+    onEventHover={handleEventHover}
     onCardClickHandle={() => {}}
-    handleEventHoverOut={() => {}}
+    onEventHoverOut={() => {}}
   />);
 
   const cardArticle = screen.find(`article`);
@@ -92,9 +92,9 @@ it(`Click on img or a should pass to the callback`, () => {
 
   const screen = shallow(<CardMovie
     film={film}
-    handleEventHover={() => {}}
+    onEventHover={() => {}}
     onCardClickHandle={onCardClickHandle}
-    handleEventHoverOut={() => {}}
+    onEventHoverOut={() => {}}
   />);
 
   const article = screen.find(`article`);

@@ -37,7 +37,7 @@ class App extends PureComponent {
     return (<Router history={history}>
       <Switch>
         <Route exact path="/">
-          <Main onCardClickHandle={this.handleSelectFilm} handleSetActiveIdNull={onSetActiveId}/>
+          <Main onCardClickHandle={this.handleSelectFilm} onSetActiveIdNull={onSetActiveId}/>
         </Route>
         <Route exact path="/login">
           <SignIn onSubmit={login}/>
@@ -75,9 +75,45 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 App.propTypes = {
-  films: PropTypes.array,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    backgroundImg: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+    previewVideo: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    scoresCount: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.number.isRequired,
+    genre: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  })),
+  promo: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    backgroundImg: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+    previewVideo: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    scoresCount: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.number.isRequired,
+    genre: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }).isRequired,
   login: PropTypes.func.isRequired,
-  promo: PropTypes.object.isRequired,
   postComment: PropTypes.func.isRequired,
   onSetActiveId: PropTypes.func.isRequired,
   activeId: PropTypes.string,

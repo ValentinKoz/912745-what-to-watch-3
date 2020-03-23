@@ -6,7 +6,7 @@ import PageMovie from "./page-movie.jsx";
 import {Namespace} from "./../../mocks/settings.js";
 import {BrowserRouter} from "react-router-dom";
 
-const films = [{}, {}, {}];
+const films = [];
 
 const mockStore = configureStore([]);
 

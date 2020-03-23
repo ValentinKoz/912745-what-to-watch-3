@@ -52,6 +52,9 @@ const Operation = {
         .then(() => {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
           history.push(`/`);
+        })
+        .catch((err)=> {
+          throw err;
         });
   },
 };

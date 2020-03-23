@@ -6,7 +6,7 @@ class AddReview extends PureComponent {
   constructor(props) {
     super(props);
   }
-  handleSubmit(evt) {
+  handleFormSubmit(evt) {
     const {textComment, rating, postComment, film} = this.props;
     evt.preventDefault();
 
@@ -21,7 +21,7 @@ class AddReview extends PureComponent {
     this.props.history.push(`/films/${film.id}`);
   }
 
-  handleTitleMessage() {
+  handleTitleMessageShow() {
     const {rating, textComment} = this.props;
     if (rating === 0) {
       return `Вы не выбрали рейтинг`;
@@ -87,7 +87,7 @@ class AddReview extends PureComponent {
         </div>
 
         <div className="add-review">
-          <form action="#" className="add-review__form" onSubmit={(evt) => (this.handleSubmit(evt))}>
+          <form action="#" className="add-review__form" onSubmit={(evt) => (this.handleFormSubmit(evt))}>
             <div className="rating">
               <div className="rating__stars">
                 <input className="rating__input" onChange={onChangeRating} id="star-1" type="radio" name="rating" value="1" checked={rating === 1 ? `checked` : ``} />
@@ -110,7 +110,7 @@ class AddReview extends PureComponent {
             <div className="add-review__text">
               <textarea maxLength="400" onChange={onChangeText} value={textComment} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
               <div className="add-review__submit">
-                <button className="add-review__btn" title={this.handleTitleMessage()} disabled={this.isAvalible() ? `` : `disabled`} type="submit">Post</button>
+                <button className="add-review__btn" title={this.handleTitleMessageShow()} disabled={this.isAvalible() ? `` : `disabled`} type="submit">Post</button>
               </div>
             </div>
 
@@ -122,7 +122,25 @@ class AddReview extends PureComponent {
 }
 AddReview.propTypes = {
   history: PropTypes.object,
-  film: PropTypes.object.isRequired,
+  film: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    backgroundImg: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+    previewVideo: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    scoresCount: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.number.isRequired,
+    genre: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }).isRequired,
   rating: PropTypes.number.isRequired,
   onChangeRating: PropTypes.func.isRequired,
   onChangeText: PropTypes.func.isRequired,

@@ -52,7 +52,25 @@ const FullVideoPlayer = (props) => {
 };
 
 FullVideoPlayer.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    backgroundImg: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+    previewVideo: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    scoresCount: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.number.isRequired,
+    genre: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }).isRequired,
   isPlaying: PropTypes.bool.isRequired,
   _videoRef: PropTypes.oneOfType([
     PropTypes.func,

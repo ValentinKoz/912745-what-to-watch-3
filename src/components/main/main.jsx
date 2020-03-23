@@ -10,7 +10,7 @@ import {Namespace} from "./../../mocks/settings.js";
 class Main extends PureComponent {
 
   componentDidMount() {
-    this.props.handleSetActiveIdNull(null);
+    this.props.onSetActiveIdNull(null);
   }
 
   render() {
@@ -120,7 +120,7 @@ Main.propTypes = {
   promo: PropTypes.object.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
-  handleSetActiveIdNull: PropTypes.func.isRequired,
+  onSetActiveIdNull: PropTypes.func.isRequired,
   changeFavorite: PropTypes.func.isRequired,
 };
 

@@ -8,7 +8,7 @@ import reducer from "./reducer/reducer.js";
 import {createAPI} from "./api.js";
 import thunk from "redux-thunk";
 import {Operation as Data} from "./reducer/data/data.js";
-import {Operation as User, ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
+import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {withActiveItem} from "./hocs/with-active-item/with-active-item.js";
 import {withShowPlayer} from "./hocs/with-show-player/with-show-player.js";
 
@@ -29,7 +29,6 @@ const store = createStore(
 
 store.dispatch(Data.loadFilms());
 store.dispatch(Data.loadPromo());
-store.dispatch(User.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
