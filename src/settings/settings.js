@@ -42,6 +42,15 @@ export const adaptedObject = (item) => {
   };
 };
 
+export const adaptedAuth = (item) => {
+  return {
+    id: `${item.id}`,
+    email: item.email,
+    name: item.name,
+    avatarUrl: item[`avatar_url`],
+  };
+};
+
 export const getDate = (propDate) => {
   const date = new Date(propDate);
   const month = MONTHS[date.getMonth()];

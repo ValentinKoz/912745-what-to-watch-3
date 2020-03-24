@@ -15,7 +15,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {onCardClickHandle, promo, authorizationStatus, changeFavorite} = this.props;
+    const {onCardClickHandle, promo, authorizationStatus, changeFavorite, authInfo} = this.props;
     const {backgroundImg, name, poster, genre, released, isFavorite, id} = promo;
 
     return <React.Fragment>
@@ -38,7 +38,7 @@ class Main extends PureComponent {
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH ? (<Link to={Path.MY_LIST}>
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <img src={`https://htmlacademy-react-3.appspot.com/${authInfo.avatarUrl}`} alt="User avatar" width="63" height="63" />
               </div>
             </Link>) : (<div className="user-block">
               <Link to={Path.LOGIN} className="user-block__link">Sign in</Link>
@@ -109,6 +109,7 @@ class Main extends PureComponent {
 const mapStateToProps = (state) => ({
   promo: state[Namespace.DATA].promo,
   authorizationStatus: state[Namespace.USER].authorizationStatus,
+  authInfo: state[Namespace.USER].authInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -118,7 +119,31 @@ const mapDispatchToProps = (dispatch) => ({
 Main.displayName = `Main`;
 
 Main.propTypes = {
-  promo: PropTypes.object.isRequired,
+  promo: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    poster: PropTypes.string,
+    preview: PropTypes.string,
+    backgroundImg: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    video: PropTypes.string,
+    previewVideo: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    scoresCount: PropTypes.number,
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    runTime: PropTypes.number,
+    genre: PropTypes.string,
+    released: PropTypes.number,
+    isFavorite: PropTypes.bool,
+  }).isRequired,
+  authInfo: PropTypes.shape({
+    id: PropTypes.string,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+  }),
   authorizationStatus: PropTypes.string.isRequired,
   onCardClickHandle: PropTypes.func.isRequired,
   onSetActiveIdNull: PropTypes.func.isRequired,

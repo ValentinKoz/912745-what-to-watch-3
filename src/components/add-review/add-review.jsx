@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {Namespace} from "./../../settings/settings.js";
 import {Link, withRouter} from "react-router-dom";
 import {Path} from "./../../settings/settings.js";
 
@@ -43,7 +45,7 @@ class AddReview extends PureComponent {
   }
 
   render() {
-    const {film, rating, onChangeRating, onChangeText, textComment} = this.props;
+    const {film, rating, onChangeRating, onChangeText, textComment, authInfo} = this.props;
     const {poster, name, backgroundImg, backgroundColor, id} = film;
 
     return (
@@ -77,7 +79,7 @@ class AddReview extends PureComponent {
 
             <div className="user-block">
               <div className="user-block__avatar">
-                <img src="../img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <img src={`https://htmlacademy-react-3.appspot.com/${authInfo.avatarUrl}`} alt="User avatar" width="63" height="63" />
               </div>
             </div>
           </header>
@@ -121,7 +123,17 @@ class AddReview extends PureComponent {
       </section>);
   }
 }
+const mapStateToProps = (state) => ({
+  authInfo: state[Namespace.USER].authInfo,
+});
+
 AddReview.propTypes = {
+  authInfo: PropTypes.shape({
+    id: PropTypes.string,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+  }),
   history: PropTypes.object,
   film: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -149,4 +161,6 @@ AddReview.propTypes = {
   postComment: PropTypes.func.isRequired,
 };
 
-export default withRouter(AddReview);
+const AddReviewWrapped = withRouter(AddReview);
+export {AddReviewWrapped};
+export default connect(mapStateToProps)(AddReviewWrapped);

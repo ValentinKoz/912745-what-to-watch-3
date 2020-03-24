@@ -17,7 +17,7 @@ exports[`List Genres renderer correctly 1`] = `
     >
       <a
         className="catalog__genres-link"
-        href="#"
+        href=""
         onClick={[Function]}
       >
         All genres
@@ -28,7 +28,7 @@ exports[`List Genres renderer correctly 1`] = `
     >
       <a
         className="catalog__genres-link"
-        href="#"
+        href=""
         onClick={[Function]}
       >
         Comedy

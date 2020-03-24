@@ -35,7 +35,7 @@ class ListGenres extends PureComponent {
       <h2 className="catalog__title visually-hidden">Catalog</h2>
       <ul className="catalog__genres-list">
         {genres.map((genreItem, i) => <li key={`${genreItem}-${i}`} className={`catalog__genres-item ${genre === genreItem ? `catalog__genres-item--active` : ``}`}>
-          <a href="#" className="catalog__genres-link" onClick={() => onChangeGenre(genreItem)}>{genreItem}</a>
+          <a href="" className="catalog__genres-link" onClick={() => onChangeGenre(genreItem)}>{genreItem}</a>
         </li>)}
       </ul>
       <ListMovieWrapped films={filteredFilms.slice(0, displayedItems)} onCardClickHandle={onCardClickHandle} />

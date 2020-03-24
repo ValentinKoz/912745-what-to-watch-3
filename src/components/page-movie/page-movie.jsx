@@ -13,7 +13,7 @@ import {Path} from "./../../settings/settings.js";
 const TabListWrapped = withActiveTab(TabList);
 
 const PageMovie = React.memo((props) => {
-  const {film, onCardClickHandle, films, authorizationStatus, changeFavorite} = props;
+  const {film, onCardClickHandle, films, authorizationStatus, changeFavorite, authInfo} = props;
   const {genre, released, poster, name, backgroundImg, backgroundColor, id, isFavorite} = film;
   return <><section className="movie-card movie-card--full" style={{background: backgroundColor}}>
     <div className="movie-card__hero">
@@ -35,7 +35,7 @@ const PageMovie = React.memo((props) => {
         <div className="user-block">
           {authorizationStatus === AuthorizationStatus.AUTH ? (<Link to={Path.MY_LIST}>
             <div className="user-block__avatar">
-              <img src="../img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={`https://htmlacademy-react-3.appspot.com/${authInfo.avatarUrl}`} alt="User avatar" width="63" height="63" />
             </div>
           </Link>) : (<div className="user-block">
             <Link to={Path.LOGIN} className="user-block__link">Sign in</Link>
@@ -92,6 +92,7 @@ const PageMovie = React.memo((props) => {
 const mapStateToProps = (state) => ({
   films: state[Namespace.DATA].films,
   authorizationStatus: state[Namespace.USER].authorizationStatus,
+  authInfo: state[Namespace.USER].authInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -102,6 +103,12 @@ const mapDispatchToProps = (dispatch) => ({
 PageMovie.displayName = `PageMovie`;
 
 PageMovie.propTypes = {
+  authInfo: PropTypes.shape({
+    id: PropTypes.string,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+  }),
   film: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

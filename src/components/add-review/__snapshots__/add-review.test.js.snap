@@ -90,7 +90,7 @@ exports[`Render App 1`] = `
           <img
             alt="User avatar"
             height="63"
-            src="../img/avatar.jpg"
+            src="https://htmlacademy-react-3.appspot.com/img/1.png"
             width="63"
           />
         </div>

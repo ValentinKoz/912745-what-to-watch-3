@@ -44,13 +44,24 @@ it(`PageMovie is renderer correctly`, () => {
       displayedItems,
     },
     [Namespace.USER]: {
-      authorizationStatus: `AUTH`
+      authorizationStatus: `AUTH`,
+      authInfo: {
+        "id": `1`,
+        "email": `Oliver.conner@gmail.com`,
+        "name": `Oliver.conner`,
+        "avatarUrl": `img/1.png`
+      }
     }
   });
   const tree = renderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <MyList onCardClickHandle={() => {}} favoriteFilms={film} loadFilms={()=>{}}/>
+          <MyList onCardClickHandle={() => {}} favoriteFilms={film} loadFilms={()=>{}} authInfo={{
+            "id": `1`,
+            "email": `Oliver.conner@gmail.com`,
+            "name": `Oliver.conner`,
+            "avatarUrl": `img/1.png`
+          }}/>
         </BrowserRouter>
       </Provider>, {
         createNodeMock: () => {

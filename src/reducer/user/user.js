@@ -1,5 +1,5 @@
 import history from "../../history.js";
-import {Path} from "./../../settings/settings.js";
+import {Path, adaptedAuth} from "./../../settings/settings.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -8,10 +8,12 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authInfo: {}
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  ADD_AUTH_INFO: `ADD_AUTH_INFO`,
 };
 
 const ActionCreator = {
@@ -21,6 +23,12 @@ const ActionCreator = {
       payload: status,
     };
   },
+  addAuthInfo: (info) => {
+    return {
+      type: ActionType.ADD_AUTH_INFO,
+      payload: info,
+    };
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +36,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.ADD_AUTH_INFO:
+      return Object.assign({}, state, {
+        authInfo: action.payload,
       });
   }
 
@@ -50,8 +62,11 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-        .then(() => {
+        .then((response) => {
+          const adaptedItem = adaptedAuth(response.data);
+
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+          dispatch(ActionCreator.addAuthInfo(adaptedItem));
           history.push(Path.MAIN);
         })
         .catch((err)=> {

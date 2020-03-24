@@ -42,6 +42,12 @@ it(`Render App`, () => {
     },
     [Namespace.USER]: {
       authorizationStatus: `NO_AUTH`,
+      authInfo: {
+        id: `1`,
+        email: `Oliver.conner@gmail.com`,
+        name: `Oliver.conner`,
+        avatarUrl: `img/1.png`
+      }
     }
   });
   const tree = renderer

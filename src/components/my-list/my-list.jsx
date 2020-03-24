@@ -17,7 +17,7 @@ class MyList extends PureComponent {
   }
 
   render() {
-    const {favoriteFilms, onCardClickHandle} = this.props;
+    const {favoriteFilms, onCardClickHandle, authInfo} = this.props;
     return <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
@@ -32,7 +32,7 @@ class MyList extends PureComponent {
 
         <div className="user-block">
           <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <img src={`https://htmlacademy-react-3.appspot.com/${authInfo.avatarUrl}`} alt="User avatar" width="63" height="63" />
           </div>
         </div>
       </header>
@@ -61,6 +61,7 @@ class MyList extends PureComponent {
 
 const mapStateToProps = (state) => ({
   favoriteFilms: state[Namespace.DATA].favoriteFilms,
+  authInfo: state[Namespace.USER].authInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -70,6 +71,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 MyList.propTypes = {
+  authInfo: PropTypes.shape({
+    id: PropTypes.string,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+  }),
   favoriteFilms: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

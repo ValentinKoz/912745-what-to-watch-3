@@ -8,6 +8,7 @@ const api = createAPI(() => {});
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     authorizationStatus: `NO_AUTH`,
+    authInfo: {}
   });
 });
 
@@ -19,6 +20,17 @@ it(`Reducere should change`, () => {
     payload: AuthorizationStatus.AUTH
   })).toEqual({
     authorizationStatus: AuthorizationStatus.AUTH,
+  });
+});
+
+it(`Reducere should change`, () => {
+  expect(reducer({
+    authInfo: {},
+  }, {
+    type: ActionType.ADD_AUTH_INFO,
+    payload: {auth: `auth`}
+  })).toEqual({
+    authInfo: {auth: `auth`},
   });
 });
 
@@ -48,7 +60,7 @@ it(`Should make a correct post login`, () => {
 
   mock.onPost(Path.LOGIN).reply(200, []);
   return login(dispatch, () => {}, api).then(() => {
-    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledTimes(2);
     expect(dispatch).toHaveBeenCalledWith({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH,
