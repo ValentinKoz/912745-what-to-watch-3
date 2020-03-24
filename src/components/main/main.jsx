@@ -5,7 +5,8 @@ import ListGenres from "./../list-genres/list-genres.jsx";
 import {Operation as Data} from "./../../reducer/data/data.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
-import {Namespace} from "./../../mocks/settings.js";
+import {Namespace} from "./../../settings/settings.js";
+import {Path} from "./../../settings/settings.js";
 
 class Main extends PureComponent {
 
@@ -35,12 +36,12 @@ class Main extends PureComponent {
           </div>
 
           <div className="user-block">
-            {authorizationStatus === AuthorizationStatus.AUTH ? (<Link to="/myList">
+            {authorizationStatus === AuthorizationStatus.AUTH ? (<Link to={Path.MY_LIST}>
               <div className="user-block__avatar">
                 <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
               </div>
             </Link>) : (<div className="user-block">
-              <Link to="/login" className="user-block__link">Sign in</Link>
+              <Link to={Path.LOGIN} className="user-block__link">Sign in</Link>
             </div>
             )}
           </div>
@@ -60,7 +61,7 @@ class Main extends PureComponent {
               </p>
 
               <div className="movie-card__buttons">
-                <Link to={`/films/${promo.id}/player`} className="btn btn--play movie-card__button" type="button">
+                <Link to={`${Path.FILMS}/${promo.id}${Path.PLAYER}`} className="btn btn--play movie-card__button" type="button">
                   <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
                   </svg>

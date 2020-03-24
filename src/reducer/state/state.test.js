@@ -1,5 +1,5 @@
 import {reducer, ActionCreator, ActionType} from "./state.js";
-import {DISPLAYED_ITEMS} from "./../../mocks/settings.js";
+import {DISPLAYED_ITEMS} from "./../../settings/settings.js";
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({

@@ -1,6 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import {reducer, ActionType, Operation} from "./data.js";
+import {Path} from "./../../settings/settings.js";
 
 const api = createAPI(() => {});
 
@@ -116,6 +117,24 @@ it(`Reducer should load films`, () => {
   });
 });
 
+it(`Reducer should load favorite`, () => {
+  expect(reducer({
+    films: [],
+    promo: {},
+    commentsToFilm: [],
+    favoriteFilms: [],
+  }, {
+    type: ActionType.LOAD_FAVORITE,
+    payload: films
+  })
+  ).toEqual({
+    films: [],
+    promo: {},
+    commentsToFilm: [],
+    favoriteFilms: films,
+  });
+});
+
 it(`Reducer should load promo`, () => {
   expect(reducer({
     films: [],
@@ -157,7 +176,7 @@ it(`Should make a correct Api`, () => {
   const dispatch = jest.fn();
 
 
-  mock.onGet(`/films`).reply(200, []);
+  mock.onGet(Path.FILMS).reply(200, []);
   Operation.loadFilms()(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({
@@ -171,7 +190,7 @@ it(`Should make a correct Api`, () => {
   const mock = new MockAdapter(api);
   const dispatch = jest.fn();
 
-  mock.onGet(`/films/promo`).reply(200, film);
+  mock.onGet(`${Path.FILMS}${Path.PROMO}`).reply(200, film);
   Operation.loadPromo()(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({
@@ -185,7 +204,7 @@ it(`Should make a correct Api`, () => {
   const mock = new MockAdapter(api);
   const dispatch = jest.fn();
 
-  mock.onGet(`/comments/1`).reply(200, []);
+  mock.onGet(`${Path.COMMENTS}/1`).reply(200, []);
   Operation.loadComments(1)(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({
@@ -199,12 +218,42 @@ it(`Should make a correct Api`, () => {
   const mock = new MockAdapter(api);
   const dispatch = jest.fn();
 
-  mock.onGet(`/favorite`).reply(200, [film]);
+  mock.onGet(Path.FAVORITE).reply(200, [film]);
   Operation.loadFavorite()(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({
       type: ActionType.LOAD_FAVORITE,
       payload: [afterFilm]
     });
+  });
+});
+
+it(`Should make a correct Api`, () => {
+  const mock = new MockAdapter(api);
+  const dispatch = jest.fn();
+  const postComment = Operation.postComment({
+    "id": 1,
+    "rating": 5,
+    "comment": `текст текст текст текст текст текст текст текст текст текст текст`,
+  });
+
+  mock.onPost(`${Path.COMMENTS}/1`).reply(200, []);
+  return postComment(dispatch, () => {}, api).then(() => {
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith({
+      type: ActionType.LOAD_COMMENTS,
+      payload: []
+    });
+  });
+});
+
+it(`Should make a correct Api`, () => {
+  const mock = new MockAdapter(api);
+  const dispatch = jest.fn();
+  const changeFavorite = Operation.changeFavorite({"id": 1, "status": 1});
+
+  mock.onPost(`${Path.FAVORITE}/1/1`).reply(200, []);
+  return changeFavorite(dispatch, () => ({'DATA': {films, promo: {id: 3}}}), api).then(() => {
+    expect(dispatch).toHaveBeenCalledTimes(1);
   });
 });

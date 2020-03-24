@@ -1,5 +1,5 @@
 import {extend} from "./../../utils.js";
-import {DISPLAYED_ITEMS, ADD_TO_SHOW} from "./../../mocks/settings.js";
+import {DISPLAYED_ITEMS, ADD_TO_SHOW} from "./../../settings/settings.js";
 
 const initialState = {
   genre: `All genres`,

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import ListMovie from "./../list-movie/list-movie.jsx";
 import {withActiveItem} from "../../hocs/with-active-item/with-active-item.js";
-import {Namespace} from "../../mocks/settings.js";
+import {Namespace} from "../../settings/settings.js";
 import {Operation} from "../../reducer/data/data.js";
 import {connect} from "react-redux";
 

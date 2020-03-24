@@ -1,5 +1,6 @@
 import {reducer, ActionType, Operation, AuthorizationStatus} from "./user.js";
 import MockAdapter from "axios-mock-adapter";
+import {Path} from "./../../settings/settings.js";
 import {createAPI} from "../../api.js";
 
 const api = createAPI(() => {});
@@ -27,7 +28,7 @@ it(`Should make a correct get login`, () => {
   const dispatch = jest.fn();
 
 
-  mock.onGet(`/login`).reply(200, []);
+  mock.onGet(Path.LOGIN).reply(200, []);
   Operation.checkAuth()(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({
@@ -45,7 +46,7 @@ it(`Should make a correct post login`, () => {
     password: `Password`,
   });
 
-  mock.onPost(`/login`).reply(200, []);
+  mock.onPost(Path.LOGIN).reply(200, []);
   return login(dispatch, () => {}, api).then(() => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({

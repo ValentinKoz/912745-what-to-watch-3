@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {getDate} from "./../../../settings/settings.js";
 
 const TabReviews = (props) => {
   const {comments} = props;
@@ -14,7 +15,7 @@ const TabReviews = (props) => {
           <p className="review__text">{comment.comment}</p>
           <footer className="review__details">
             <cite className="review__author">{comment.user.name}</cite>
-            <time className="review__date" dateTime={comment.date}>{comment.date}</time>
+            <time className="review__date" dateTime={comment.date}>{getDate(comment.date)}</time>
           </footer>
         </blockquote>
         <div className="review__rating">{comment.rating}</div>
@@ -26,7 +27,7 @@ const TabReviews = (props) => {
           <p className="review__text">{comment.comment}</p>
           <footer className="review__details">
             <cite className="review__author">{comment.user.name}</cite>
-            <time className="review__date" dateTime={comment.date}>{comment.date}</time>
+            <time className="review__date" dateTime={comment.date}>{getDate(comment.date)}</time>
           </footer>
         </blockquote>
         <div className="review__rating">{comment.rating}</div>

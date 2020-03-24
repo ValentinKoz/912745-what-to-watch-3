@@ -7,7 +7,8 @@ import MoreLikeThis from "./../more-like-this/more-like-this.jsx";
 import {withActiveTab} from "../../hocs/with-active-tab/with-active-tab.js";
 import {Operation as Data} from "./../../reducer/data/data.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {Namespace} from "./../../mocks/settings.js";
+import {Namespace} from "./../../settings/settings.js";
+import {Path} from "./../../settings/settings.js";
 
 const TabListWrapped = withActiveTab(TabList);
 
@@ -24,7 +25,7 @@ const PageMovie = React.memo((props) => {
 
       <header className="page-header movie-card__head">
         <div className="logo">
-          <Link to="/" className="logo__link">
+          <Link to={Path.MAIN} className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
@@ -32,12 +33,12 @@ const PageMovie = React.memo((props) => {
         </div>
 
         <div className="user-block">
-          {authorizationStatus === AuthorizationStatus.AUTH ? (<Link to="/myList">
+          {authorizationStatus === AuthorizationStatus.AUTH ? (<Link to={Path.MY_LIST}>
             <div className="user-block__avatar">
               <img src="../img/avatar.jpg" alt="User avatar" width="63" height="63" />
             </div>
           </Link>) : (<div className="user-block">
-            <Link to="/login" className="user-block__link">Sign in</Link>
+            <Link to={Path.LOGIN} className="user-block__link">Sign in</Link>
           </div>
           )}
         </div>
@@ -52,7 +53,7 @@ const PageMovie = React.memo((props) => {
           </p>
 
           <div className="movie-card__buttons">
-            <Link to={`/films/${id}/player`} className="btn btn--play movie-card__button" type="button">
+            <Link to={`${Path.FILMS}/${id}${Path.PLAYER}`} className="btn btn--play movie-card__button" type="button">
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>
@@ -70,7 +71,7 @@ const PageMovie = React.memo((props) => {
                 </svg>
                 <span>My list</span>
               </button>)}
-            {authorizationStatus === AuthorizationStatus.AUTH && (<Link to={`/films/:${id}/review`} className="btn movie-card__button">Add review</Link>)}
+            {authorizationStatus === AuthorizationStatus.AUTH && (<Link to={`${Path.FILMS}/:${id}${Path.REVIEW}`} className="btn movie-card__button">Add review</Link>)}
           </div>
         </div>
       </div>

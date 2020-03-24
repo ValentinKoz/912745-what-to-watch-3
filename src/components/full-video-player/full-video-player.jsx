@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {Path} from "./../../settings/settings.js";
 
 const FullVideoPlayer = (props) => {
   const {movie, isPlaying, _videoRef, getRemainingTime, handleLoadMetaData, handleFullScreen, getProgress, handleTimeUpdate, handleVideoPlay} = props;
@@ -9,7 +10,7 @@ const FullVideoPlayer = (props) => {
       <source src={movie.video}/>
     </video>
 
-    <Link to={`/`} type="button" className="player__exit">Exit</Link>
+    <Link to={Path.MAIN} type="button" className="player__exit">Exit</Link>
 
     <div className="player__controls">
       <div className="player__controls-row">

@@ -1,5 +1,5 @@
 import {extend} from "./../../utils.js";
-import {adaptedObject, Namespace} from "./../../mocks/settings.js";
+import {adaptedObject, Namespace, Path} from "./../../settings/settings.js";
 
 const initialState = {
   films: [],
@@ -36,34 +36,34 @@ const ActionType = {
 
 const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
-    return api.get(`/films`)
+    return api.get(Path.FILMS)
       .then((response) => {
         const adaptedResponse = response.data.map((item) => adaptedObject(item));
         dispatch(ActionCreator.loadFilms(adaptedResponse));
       });
   },
   loadFavorite: () => (dispatch, getState, api) => {
-    return api.get(`/favorite`)
+    return api.get(Path.FAVORITE)
       .then((response) => {
         const adaptedResponse = response.data.map((item) => adaptedObject(item));
         dispatch(ActionCreator.loadFavorite(adaptedResponse));
       });
   },
   loadPromo: () => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
+    return api.get(`${Path.FILMS}${Path.PROMO}`)
       .then((response) => {
         const adaptedItem = adaptedObject(response.data);
         dispatch(ActionCreator.loadPromo(adaptedItem));
       });
   },
   loadComments: (filmId) => (dispatch, getState, api) => {
-    return api.get(`/comments/${filmId}`)
+    return api.get(`${Path.COMMENTS}/${filmId}`)
       .then((response) => {
         dispatch(ActionCreator.loadComments(response.data));
       });
   },
   postComment: (commnetData) => (dispatch, getState, api) => {
-    return api.post(`/comments/${commnetData.id}`, {
+    return api.post(`${Path.COMMENTS}/${commnetData.id}`, {
       "rating": commnetData.rating,
       "comment": commnetData.comment,
     })
@@ -72,7 +72,7 @@ const Operation = {
       });
   },
   changeFavorite: (film) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${film.id}/${film.status}`)
+    return api.post(`${Path.FAVORITE}/${film.id}/${film.status}`)
       .then((response) => {
         const adaptedItem = adaptedObject(response.data);
         const state = getState();

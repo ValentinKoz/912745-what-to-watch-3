@@ -6,7 +6,7 @@ import ListMovie from "./../list-movie/list-movie.jsx";
 import ShowMoreButton from "./../show-more-button/show-more-button.jsx";
 import {getFilmsByGenre} from "../../reducer/selectors.js";
 import {withActiveItem} from "../../hocs/with-active-item/with-active-item.js";
-import {Namespace} from "./../../mocks/settings.js";
+import {Namespace} from "./../../settings/settings.js";
 
 const ListMovieWrapped = withActiveItem(ListMovie);
 

@@ -1,4 +1,5 @@
 import history from "../../history.js";
+import {Path} from "./../../settings/settings.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -35,7 +36,7 @@ const reducer = (state = initialState, action) => {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
+    return api.get(Path.LOGIN)
         .then(() => {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         })
@@ -45,13 +46,13 @@ const Operation = {
   },
 
   login: (authData) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
+    return api.post(Path.LOGIN, {
       email: authData.login,
       password: authData.password,
     })
         .then(() => {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-          history.push(`/`);
+          history.push(Path.MAIN);
         })
         .catch((err)=> {
           throw err;

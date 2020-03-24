@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import {Namespace} from "./../mocks/settings.js";
+import {Namespace} from "./../settings/settings.js";
 
 const filterFilmsByGenre = (state) => {
   const films = state[Namespace.DATA].films;

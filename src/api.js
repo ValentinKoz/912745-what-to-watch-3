@@ -1,5 +1,6 @@
 import axios from "axios";
 import history from "./history.js";
+import {Path} from "./../src/settings/settings.js";
 
 const Error = {
   UNAUTHORIZED: 401
@@ -21,7 +22,7 @@ export const createAPI = (onUnauthorized) => {
 
     if (response.status === Error.UNAUTHORIZED) {
       onUnauthorized();
-      history.push(`/login`);
+      history.push(Path.LOGIN);
       throw err;
     }
     throw err;

@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import TabList from "./tab-list.jsx";
-import {Namespace} from "./../../mocks/settings.js";
+import {Namespace} from "./../../settings/settings.js";
 
 const mockStore = configureStore([]);
 

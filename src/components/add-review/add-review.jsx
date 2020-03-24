@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link, withRouter} from "react-router-dom";
+import {Path} from "./../../settings/settings.js";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -18,7 +19,7 @@ class AddReview extends PureComponent {
       comment: textComment,
       rating,
     });
-    this.props.history.push(`/films/${film.id}`);
+    this.props.history.push(`${Path.FILMS}/${film.id}`);
   }
 
   handleTitleMessageShow() {
@@ -56,7 +57,7 @@ class AddReview extends PureComponent {
 
           <header className="page-header">
             <div className="logo">
-              <Link to={`/films/${id}`} className="logo__link">
+              <Link to={`${Path.FILMS}/${id}`} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -66,7 +67,7 @@ class AddReview extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
+                  <Link to={`${Path.FILMS}/${id}`} className="breadcrumbs__link">{name}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
