@@ -3,7 +3,7 @@ const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, 
 const Path = {
   LOGIN: `/login`,
   FILMS: `/films`,
-  MY_LIST: `/myList`,
+  MY_LIST: `/mylist`,
   MAIN: `/`,
   REVIEW: `/review`,
   PLAYER: `/player`,
