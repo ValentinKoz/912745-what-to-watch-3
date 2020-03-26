@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Main from "./../main/main.jsx";
 import SignIn from "./../sign-in/sign-in.jsx";
 import AddReview from "./../add-review/add-review.jsx";
-import PageMovieWithRouter from "./../page-movie/page-movie.jsx";
+import PageMovie from "./../page-movie/page-movie.jsx";
 import {Operation} from "../../reducer/user/user.js";
 import PrivateRoute from "../private-route/private-route.jsx";
 import {withFullScreenPlayer} from "../../hocs/with-full-screen-player/with-full-screen-player.js";
@@ -32,9 +32,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const {login, activeId, postComment, films, promo, onSetActiveId} = this.props;
+    const {login, activeId, postComment, films, onSetActiveId} = this.props;
     const film = films.find((movie) => movie.id === activeId);
-
     return (<Router history={history}>
       <Switch>
         <Route exact path={Path.MAIN}>
@@ -44,10 +43,10 @@ class App extends PureComponent {
           <SignIn onSubmit={login}/>
         </Route>
         <Route exact path={`${Path.FILMS}${Path.PLAYER}/:id`}>
-          <FullVideoPlayerWrapped movie={activeId ? film : promo} />
+          <FullVideoPlayerWrapped />
         </Route>
         <Route exact path={`${Path.FILMS}/:id`}>
-          <PageMovieWithRouter onCardClickHandle={this.handleSelectFilm}/>
+          <PageMovie onCardClickHandle={this.handleSelectFilm}/>
         </Route>
         <PrivateRoute exact path={`${Path.FILMS}/:id${Path.REVIEW}`}
           render={() => (<AddReviewWrapped postComment={postComment} film={film}/>)}

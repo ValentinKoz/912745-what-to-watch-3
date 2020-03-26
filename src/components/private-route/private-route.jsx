@@ -8,7 +8,6 @@ import {Path} from "./../../settings/settings.js";
 
 const PrivateRoute = (props) => {
   const {render, path, exact, authorizationStatus} = props;
-
   return (
     <Route
       path={path}

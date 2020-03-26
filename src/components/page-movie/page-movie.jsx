@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
@@ -12,16 +12,16 @@ import {Path} from "./../../settings/settings.js";
 
 const TabListWrapped = withActiveTab(TabList);
 
-class PageMovie extends PureComponent {
-  componentDidMount() {
-    this.props.loadFilms();
-  }
+const PageMovie = React.memo((props) => {
+  const {onCardClickHandle, films, authorizationStatus, changeFavorite, authInfo, location} = props;
 
-  render() {
-    const {onCardClickHandle, films, authorizationStatus, changeFavorite, authInfo} = this.props;
-    const film = films[1];
+  if (!films.length) {
+    return <></>;
+  } else {
+    const pathname = location.pathname.split(`/`).pop();
+    const film = films.find((movie) => movie.id === pathname);
     const {genre, released, poster, name, backgroundImg, backgroundColor, id, isFavorite} = film;
-    return <><section className="movie-card movie-card--full" style={{background: backgroundColor}}>
+    return (<><section className="movie-card movie-card--full" style={{background: backgroundColor}}>
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={backgroundImg} alt={name} />
@@ -93,9 +93,10 @@ class PageMovie extends PureComponent {
       </div>
     </section>
   <MoreLikeThis films={films} currentGenre={genre} currentFilm={film} onCardClickHandle={onCardClickHandle}/>
-  </>;
+    </>);
   }
-}
+});
+
 const mapStateToProps = (state) => ({
   films: state[Namespace.DATA].films,
   authorizationStatus: state[Namespace.USER].authorizationStatus,
@@ -104,7 +105,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeFavorite: (id, status) => dispatch(Data.changeFavorite({id, status})),
-  loadFilms: () => dispatch(Data.loadFilms()),
 });
 
 
@@ -117,10 +117,10 @@ PageMovie.propTypes = {
     name: PropTypes.string,
     avatarUrl: PropTypes.string,
   }),
+  location: PropTypes.object,
   onCardClickHandle: PropTypes.func.isRequired,
   changeFavorite: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  loadFilms: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -142,5 +142,5 @@ PageMovie.propTypes = {
   })),
 };
 const PageMovieWithRouter = withRouter(PageMovie);
-export {PageMovieWithRouter};
+export {PageMovie};
 export default connect(mapStateToProps, mapDispatchToProps)(PageMovieWithRouter);

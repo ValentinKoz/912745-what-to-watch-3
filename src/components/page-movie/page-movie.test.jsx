@@ -1,14 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {PageMovie} from "./page-movie.jsx";
+import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import PageMovie from "./page-movie.jsx";
 import {Namespace} from "./../../settings/settings.js";
-import {BrowserRouter} from "react-router-dom";
-
-const films = [];
 
 const mockStore = configureStore([]);
+
+const displayedItems = 8;
 
 const film = {
   id: `1`,
@@ -30,13 +30,11 @@ const film = {
   isFavorite: false
 };
 
-const displayedItems = 8;
-
 it(`PageMovie is renderer correctly`, () => {
   const store = mockStore({
     [Namespace.DATA]: {
-      films,
-      promo: films[0],
+      films: [film],
+      promo: film,
     },
     [Namespace.STATE]: {
       genre: `All genres`,
@@ -49,9 +47,13 @@ it(`PageMovie is renderer correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <PageMovie films={films} film={film} onCardClickHandle={() => {}} showPlayer={false} onShowPlayer={() => {}} />
+          <PageMovie authorizationStatus={`NO_AUTH`} authInfo={{}} location={{pathname: `films/player/1`}} changeFavorite={()=>{}} films={[film]} onCardClickHandle={() => {}} showPlayer={false} onShowPlayer={() => {}} />
         </BrowserRouter>
-      </Provider>
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

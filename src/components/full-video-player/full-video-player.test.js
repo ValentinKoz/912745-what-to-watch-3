@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FullVideoPlayer from "./full-video-player.jsx";
+import {FullVideoPlayer} from "./full-video-player.jsx";
 import {BrowserRouter} from "react-router-dom";
 
 const movie = {
@@ -29,7 +29,7 @@ it(`Render Full Video Player`, () => {
         <BrowserRouter>
           <FullVideoPlayer
             onExit={()=>{}}
-            movie={movie}
+            films={[movie]}
             _videoRef={React.createRef()}
             isPlaying={true}
             getRemainingTime={() => {}}
@@ -38,6 +38,7 @@ it(`Render Full Video Player`, () => {
             getProgress={() => {}}
             handleTimeUpdate={() => {}}
             handleVideoPlay={() => {}}
+            location={{pathname: `films/player/1`}}
           />
         </BrowserRouter>, {
           createNodeMock: () => {
