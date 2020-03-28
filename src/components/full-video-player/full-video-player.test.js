@@ -33,11 +33,11 @@ it(`Render Full Video Player`, () => {
             _videoRef={React.createRef()}
             isPlaying={true}
             getRemainingTime={() => {}}
-            handleLoadMetaData={() => {}}
-            handleFullScreen={() => {}}
+            onLoadMetaData={() => {}}
+            onFullScreen={() => {}}
             getProgress={() => {}}
-            handleTimeUpdate={() => {}}
-            handleVideoPlay={() => {}}
+            onTimeUpdate={() => {}}
+            onVideoPlay={() => {}}
             location={{pathname: `films/player/1`}}
           />
         </BrowserRouter>, {

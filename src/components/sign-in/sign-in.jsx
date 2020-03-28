@@ -1,5 +1,9 @@
 import React, {PureComponent, createRef} from "react";
 import {Link} from "react-router-dom";
+import {Namespace} from "../../settings/settings.js";
+import {connect} from "react-redux";
+import {ActionCreator, ErrorStatus} from "../../reducer/user/user.js";
+import {ErrorMessage} from "./../../settings/settings.js";
 import PropTypes from "prop-types";
 
 class SignIn extends PureComponent {
@@ -13,16 +17,21 @@ class SignIn extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
-
+    const {onSubmit, addErrorStatus} = this.props;
+    const login = this.loginRef.current.value;
+    const password = this.passwordRef.current.value;
     evt.preventDefault();
-
-    onSubmit({
-      login: this.loginRef.current.value,
-      password: this.passwordRef.current.value,
-    });
+    if (login.length && password.length) {
+      onSubmit({
+        login: this.loginRef.current.value,
+        password: this.passwordRef.current.value,
+      });
+    } else {
+      addErrorStatus();
+    }
   }
   render() {
+    const {errorStatus} = this.props;
     return (<div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
@@ -37,6 +46,11 @@ class SignIn extends PureComponent {
       </header>
 
       <div className="sign-in user-page__content">
+        {
+          errorStatus && (<div className="sign-in__message">
+            <p>{ErrorMessage[errorStatus]}</p>
+          </div>)
+        }
         <form action="#" className="sign-in__form" onSubmit={this.handleSubmit}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
@@ -71,8 +85,20 @@ class SignIn extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  errorStatus: state[Namespace.USER].authError,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addErrorStatus() {
+    dispatch(ActionCreator.addErrorStatus(ErrorStatus.ERROR_LOGIN));
+  }
+});
+
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  addErrorStatus: PropTypes.func.isRequired,
+  errorStatus: PropTypes.string,
 };
-
-export default SignIn;
+export {SignIn};
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

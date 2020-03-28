@@ -1,6 +1,7 @@
 import React from "react";
 import ListMovie from "../list-movie/list-movie.jsx";
 import PropTypes from "prop-types";
+import {DISPALYED_FILMS_LIKE_THIS} from "./../../settings/settings.js";
 import {withActiveItem} from "../../hocs/with-active-item/with-active-item.js";
 
 const ListMovieWrapped = withActiveItem(ListMovie);
@@ -8,8 +9,8 @@ const ListMovieWrapped = withActiveItem(ListMovie);
 const MoreLikeThis = React.memo((props) => {
   const {currentGenre, currentFilm, onCardClickHandle, films} = props;
   const filmsLikeThis = films.filter((film) => film.genre === currentGenre && film.name !== currentFilm.name);
-  if (filmsLikeThis.length > 4) {
-    filmsLikeThis.splice(4);
+  if (filmsLikeThis.length > DISPALYED_FILMS_LIKE_THIS) {
+    filmsLikeThis.splice(DISPALYED_FILMS_LIKE_THIS);
   }
 
   return (<div className="page-content">

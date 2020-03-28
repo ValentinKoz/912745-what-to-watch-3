@@ -6,14 +6,22 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+const ErrorStatus = {
+  ERROR_LOGIN: `ERROR_LOGIN`,
+  ERROR_AUTH: `ERROR_AUTH`,
+  NO_ERROR: ``,
+};
+
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  authInfo: {}
+  authInfo: {},
+  authError: ``,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   ADD_AUTH_INFO: `ADD_AUTH_INFO`,
+  ADD_ERROR_STATUS: `ADD_ERROR_STATUS`,
 };
 
 const ActionCreator = {
@@ -28,6 +36,12 @@ const ActionCreator = {
       type: ActionType.ADD_AUTH_INFO,
       payload: info,
     };
+  },
+  addErrorStatus: (error) => {
+    return {
+      type: ActionType.ADD_ERROR_STATUS,
+      payload: error,
+    };
   }
 };
 
@@ -40,6 +54,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.ADD_AUTH_INFO:
       return Object.assign({}, state, {
         authInfo: action.payload,
+      });
+    case ActionType.ADD_ERROR_STATUS:
+      return Object.assign({}, state, {
+        authError: action.payload,
       });
   }
 
@@ -67,9 +85,11 @@ const Operation = {
 
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
           dispatch(ActionCreator.addAuthInfo(adaptedItem));
+          dispatch(ActionCreator.addErrorStatus(ErrorStatus.NO_ERROR));
           history.push(Path.MAIN);
         })
         .catch((err)=> {
+          dispatch(ActionCreator.addErrorStatus(ErrorStatus.ERROR_AUTH));
           throw err;
         });
   },
@@ -77,6 +97,7 @@ const Operation = {
 
 
 export {
+  ErrorStatus,
   ActionCreator,
   ActionType,
   AuthorizationStatus,

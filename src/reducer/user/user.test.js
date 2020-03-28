@@ -1,4 +1,4 @@
-import {reducer, ActionType, Operation, AuthorizationStatus} from "./user.js";
+import {reducer, ActionType, Operation, AuthorizationStatus, ErrorStatus} from "./user.js";
 import MockAdapter from "axios-mock-adapter";
 import {Path} from "./../../settings/settings.js";
 import {createAPI} from "../../api.js";
@@ -8,7 +8,8 @@ const api = createAPI(() => {});
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     authorizationStatus: `NO_AUTH`,
-    authInfo: {}
+    authInfo: {},
+    authError: ``,
   });
 });
 
@@ -20,6 +21,17 @@ it(`Reducere should change`, () => {
     payload: AuthorizationStatus.AUTH
   })).toEqual({
     authorizationStatus: AuthorizationStatus.AUTH,
+  });
+});
+
+it(`Reducere should change`, () => {
+  expect(reducer({
+    authError: ErrorStatus.NO_ERROR,
+  }, {
+    type: ActionType.ADD_ERROR_STATUS,
+    payload: ErrorStatus.ERROR_LOGIN,
+  })).toEqual({
+    authError: ErrorStatus.ERROR_LOGIN,
   });
 });
 
@@ -60,7 +72,7 @@ it(`Should make a correct post login`, () => {
 
   mock.onPost(Path.LOGIN).reply(200, []);
   return login(dispatch, () => {}, api).then(() => {
-    expect(dispatch).toHaveBeenCalledTimes(2);
+    expect(dispatch).toHaveBeenCalledTimes(3);
     expect(dispatch).toHaveBeenCalledWith({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH,

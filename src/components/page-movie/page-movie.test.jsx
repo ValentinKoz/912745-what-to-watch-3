@@ -47,7 +47,7 @@ it(`PageMovie is renderer correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <PageMovie authorizationStatus={`NO_AUTH`} authInfo={{}} location={{pathname: `films/player/1`}} changeFavorite={()=>{}} films={[film]} onCardClickHandle={() => {}} showPlayer={false} onShowPlayer={() => {}} />
+          <PageMovie authorizationStatus={`NO_AUTH`} authInfo={{}} location={{pathname: `films/player/1`}} onChangeFavorite={()=>{}} films={[film]} onCardClickHandle={() => {}} showPlayer={false} onShowPlayer={() => {}} />
         </BrowserRouter>
       </Provider>, {
         createNodeMock: () => {

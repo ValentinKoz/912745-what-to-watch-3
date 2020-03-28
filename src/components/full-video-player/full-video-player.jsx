@@ -6,7 +6,7 @@ import {Link, withRouter} from "react-router-dom";
 import {Path} from "./../../settings/settings.js";
 
 const FullVideoPlayer = (props) => {
-  const {films, isPlaying, _videoRef, getRemainingTime, handleLoadMetaData, handleFullScreen, getProgress, handleTimeUpdate, handleVideoPlay, location} = props;
+  const {films, isPlaying, _videoRef, getRemainingTime, onLoadMetaData, onFullScreen, getProgress, onTimeUpdate, onVideoPlay, location} = props;
 
   if (!films.length) {
     return <></>;
@@ -14,7 +14,7 @@ const FullVideoPlayer = (props) => {
     const pathname = location.pathname.split(`/`).pop();
     const movie = films.find((film) => film.id === pathname);
     return (<div className="player">
-      <video ref={_videoRef} autoPlay={`autoplay`} onLoadedMetadata={handleLoadMetaData} className="player__video" poster={movie.preview} onTimeUpdate={handleTimeUpdate}>
+      <video ref={_videoRef} autoPlay={`autoplay`} onLoadedMetadata={onLoadMetaData} className="player__video" poster={movie.preview} onTimeUpdate={onTimeUpdate}>
         <source src={movie.video}/>
       </video>
 
@@ -30,7 +30,7 @@ const FullVideoPlayer = (props) => {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={handleVideoPlay}>
+          <button type="button" className="player__play" onClick={onVideoPlay}>
             {isPlaying ? (
           <>
           <svg viewBox="0 0 14 21" width="14" height="21">
@@ -49,7 +49,7 @@ const FullVideoPlayer = (props) => {
           </button>
           <div className="player__name">Transpotting</div>
 
-          <button type="button" className="player__full-screen" onClick={handleFullScreen}>
+          <button type="button" className="player__full-screen" onClick={onFullScreen}>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
@@ -92,11 +92,11 @@ FullVideoPlayer.propTypes = {
   ]).isRequired,
   location: PropTypes.object,
   getRemainingTime: PropTypes.func.isRequired,
-  handleLoadMetaData: PropTypes.func.isRequired,
-  handleFullScreen: PropTypes.func.isRequired,
+  onLoadMetaData: PropTypes.func.isRequired,
+  onFullScreen: PropTypes.func.isRequired,
   getProgress: PropTypes.func.isRequired,
-  handleTimeUpdate: PropTypes.func.isRequired,
-  handleVideoPlay: PropTypes.func.isRequired,
+  onTimeUpdate: PropTypes.func.isRequired,
+  onVideoPlay: PropTypes.func.isRequired,
 };
 export {FullVideoPlayer};
 export default connect(mapStateToProps)(withRouter(FullVideoPlayer));

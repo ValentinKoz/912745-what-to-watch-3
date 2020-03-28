@@ -32,7 +32,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {login, activeId, postComment, films, onSetActiveId} = this.props;
+    const {onLogin, activeId, postComment, films, onSetActiveId} = this.props;
     const film = films.find((movie) => movie.id === activeId);
     return (<Router history={history}>
       <Switch>
@@ -40,7 +40,7 @@ class App extends PureComponent {
           <Main onCardClickHandle={this.handleSelectFilm} onSetActiveIdNull={onSetActiveId}/>
         </Route>
         <Route exact path={Path.LOGIN}>
-          <SignIn onSubmit={login}/>
+          <SignIn onSubmit={onLogin}/>
         </Route>
         <Route exact path={`${Path.FILMS}${Path.PLAYER}/:id`}>
           <FullVideoPlayerWrapped />
@@ -66,7 +66,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
+  onLogin(authData) {
     dispatch(Operation.login(authData));
   },
   postComment(commnetData) {
@@ -113,7 +113,7 @@ App.propTypes = {
     released: PropTypes.number,
     isFavorite: PropTypes.bool,
   }),
-  login: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
   postComment: PropTypes.func.isRequired,
   onSetActiveId: PropTypes.func.isRequired,
   activeId: PropTypes.string,

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Namespace} from "./../../settings/settings.js";
 import {Link, withRouter} from "react-router-dom";
+import {CommentLength} from "./../../settings/settings.js";
 import {Path} from "./../../settings/settings.js";
 
 class AddReview extends PureComponent {
@@ -28,17 +29,17 @@ class AddReview extends PureComponent {
     const {rating, textComment} = this.props;
     if (rating === 0) {
       return `Вы не выбрали рейтинг`;
-    } else if (textComment.length <= 50) {
-      return `Текст сообщения должен быть больше 50 символов`;
-    } else if (textComment.length >= 400) {
-      return `Текст сообщения должен быть меньше 400 символов`;
+    } else if (textComment.length <= CommentLength.MIN_LENGTH) {
+      return `Текст сообщения должен быть больше ${CommentLength.MIN_LENGTH} символов`;
+    } else if (textComment.length >= CommentLength.MAX_LENGTH) {
+      return `Текст сообщения должен быть меньше ${CommentLength.MAX_LENGTH} символов`;
     }
     return ``;
   }
 
   isAvalible() {
     const {rating, textComment} = this.props;
-    if (rating !== 0 && textComment.length >= 50 && textComment.length <= 400) {
+    if (rating !== 0 && textComment.length >= CommentLength.MIN_LENGTH && textComment.length <= CommentLength.MAX_LENGTH) {
       return true;
     }
     return false;

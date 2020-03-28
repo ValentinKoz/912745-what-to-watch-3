@@ -83,11 +83,11 @@ export const withFullScreenPlayer = (Component) => {
           isPlaying={isPlaying}
           _videoRef={this._videoRef}
           getRemainingTime={this.getRemainingTime}
-          handleLoadMetaData={this.handleLoadMetaData}
-          handleFullScreen={this.handleFullScreen}
+          onLoadMetaData={this.handleLoadMetaData}
+          onFullScreen={this.handleFullScreen}
           getProgress={this.getProgress}
-          handleTimeUpdate={this.handleTimeUpdate}
-          handleVideoPlay={this.handleVideoPlay}
+          onTimeUpdate={this.handleTimeUpdate}
+          onVideoPlay={this.handleVideoPlay}
         />
       );
     }

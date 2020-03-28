@@ -1,5 +1,15 @@
 const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
+const ErrorMessage = {
+  ERROR_AUTH: `We can’t recognize this email and password combination. Please try again`,
+  ERROR_LOGIN: `Please enter a valid email address`,
+};
+
+const CommentLength = {
+  MAX_LENGTH: 400,
+  MIN_LENGTH: 50,
+};
+
 const Path = {
   LOGIN: `/login`,
   FILMS: `/films`,
@@ -18,7 +28,9 @@ const DISPLAYED_ITEMS = 8;
 
 const ADD_TO_SHOW = 8;
 
-export {MONTHS, ADD_TO_SHOW, DISPLAYED_ITEMS, Namespace, Path};
+const DISPALYED_FILMS_LIKE_THIS = 4;
+
+export {DISPALYED_FILMS_LIKE_THIS, MONTHS, ADD_TO_SHOW, DISPLAYED_ITEMS, Namespace, Path, ErrorMessage, CommentLength};
 
 export const adaptedObject = (item) => {
   return {

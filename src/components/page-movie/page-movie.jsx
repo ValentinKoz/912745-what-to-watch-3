@@ -13,7 +13,7 @@ import {Path} from "./../../settings/settings.js";
 const TabListWrapped = withActiveTab(TabList);
 
 const PageMovie = React.memo((props) => {
-  const {onCardClickHandle, films, authorizationStatus, changeFavorite, authInfo, location} = props;
+  const {onCardClickHandle, films, authorizationStatus, onChangeFavorite, authInfo, location} = props;
 
   if (!films.length) {
     return <></>;
@@ -66,12 +66,12 @@ const PageMovie = React.memo((props) => {
                 <span>Play</span>
               </Link>
               {isFavorite ?
-                (<button onClick={()=> changeFavorite(id, 0)} className="btn btn--list movie-card__button" type="button">
+                (<button onClick={()=> onChangeFavorite(id, 0)} className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 18 14" width="18" height="14">
                     <use xlinkHref="#in-list"></use>
                   </svg>
                   <span>My list</span>
-                </button>) : (<button onClick={()=> changeFavorite(id, 1)} className="btn btn--list movie-card__button" type="button">
+                </button>) : (<button onClick={()=> onChangeFavorite(id, 1)} className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -104,7 +104,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeFavorite: (id, status) => dispatch(Data.changeFavorite({id, status})),
+  onChangeFavorite: (id, status) => dispatch(Data.changeFavorite({id, status})),
 });
 
 
@@ -119,7 +119,7 @@ PageMovie.propTypes = {
   }),
   location: PropTypes.object,
   onCardClickHandle: PropTypes.func.isRequired,
-  changeFavorite: PropTypes.func.isRequired,
+  onChangeFavorite: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
